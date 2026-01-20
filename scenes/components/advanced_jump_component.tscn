@@ -12,5 +12,5 @@ wait_time = 0.105
 one_shot = true
 
 [node name="CoyoteTimer" type="Timer" parent="."]
-wait_time = 0.08
+wait_time = 0.103
 one_shot = true
