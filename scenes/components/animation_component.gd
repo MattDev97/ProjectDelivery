@@ -17,6 +17,9 @@ func handle_move_animation(move_direction: float) -> void:
 		sprite.play('run')
 	else:
 		sprite.play('idle')
+		
+func play_jump_animation() -> void:
+	sprite.play('jump')
 
 func handle_jump_animation(is_jumping: bool, is_falling: bool) -> void:
 	if is_jumping:

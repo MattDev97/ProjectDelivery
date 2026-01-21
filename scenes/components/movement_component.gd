@@ -8,7 +8,6 @@ extends Node
 @export var air_accel_speed: float = 50.0
 @export var air_decel_speed: float = 45.0
 
-
 func handle_horizontal_movement(body: CharacterBody2D, direction: float) -> void:
 	
 	var velocity_change_speed: float = 0.0

@@ -12,14 +12,9 @@ var is_going_up: bool = false
 var is_jumping: bool = false
 var last_frame_on_floor: bool = false
 
-func has_just_landed(body: CharacterBody2D) -> bool:
-	return body.is_on_floor() and not last_frame_on_floor and is_jumping
-
 func is_allowed_to_jump(body: CharacterBody2D, want_to_jump: bool) -> bool:
 	return want_to_jump and (
 			(body.is_on_floor() or not coyote_timer.is_stopped())
-				and
-			body.get_node("CharacterStateMachine").check_if_can_jump()
 		)
 
 func has_just_stepped_off_ledge(body: CharacterBody2D) -> bool:

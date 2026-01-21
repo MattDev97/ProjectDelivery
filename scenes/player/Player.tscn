@@ -1,10 +1,12 @@
-[gd_scene load_steps=50 format=3 uid="uid://rv0j4ek8e0bq"]
+[gd_scene load_steps=65 format=3 uid="uid://rv0j4ek8e0bq"]
 
 [ext_resource type="Texture2D" uid="uid://cuc0hgso5b7he" path="res://assets/sprites/player/male_hero_template-idle.png" id="1_3c3w1"]
 [ext_resource type="Script" uid="uid://bl4noxsft20wy" path="res://scenes/player/player.gd" id="1_wnvi2"]
 [ext_resource type="Texture2D" uid="uid://xmiyeiap6df6" path="res://assets/sprites/player/male_hero_template-slide.png" id="2_aqcbf"]
 [ext_resource type="Texture2D" uid="uid://dl7q2h74bfkpu" path="res://assets/sprites/player/male_hero_template-run.png" id="2_wnvi2"]
 [ext_resource type="Texture2D" uid="uid://c5yqy42ckfunf" path="res://assets/sprites/player/male_hero_template-fall_loop.png" id="3_gskgj"]
+[ext_resource type="Texture2D" uid="uid://cgl38ftceuk2b" path="res://assets/sprites/player/male_hero_template-combo_1.png" id="3_v5i4m"]
+[ext_resource type="Texture2D" uid="uid://dfq68nafw73wg" path="res://assets/sprites/player/male_hero_template-combo_1_end.png" id="4_p1lr0"]
 [ext_resource type="Texture2D" uid="uid://fkbhjbyab44i" path="res://assets/sprites/player/male_hero_template-jump.png" id="5_06mnu"]
 [ext_resource type="PackedScene" uid="uid://dk0h5acav7nc6" path="res://scenes/components/gravity.tscn" id="7_npwbq"]
 [ext_resource type="PackedScene" uid="uid://db5rxj6t7jqk4" path="res://scenes/components/movement_component.tscn" id="8_pn6s4"]
@@ -13,10 +15,43 @@
 [ext_resource type="PackedScene" uid="uid://cvatfdkchnop2" path="res://scenes/components/jump_component.tscn" id="11_5stf6"]
 [ext_resource type="PackedScene" uid="uid://cybaqaepqsu8" path="res://scenes/components/advanced_jump_component.tscn" id="12_180ig"]
 [ext_resource type="Script" uid="uid://fiaq6np0wfbp" path="res://scenes/player/character_state_machine.gd" id="13_20koh"]
-[ext_resource type="Script" uid="uid://d1rvctk2gowqy" path="res://scenes/player/running_state.gd" id="16_pi3ps"]
-[ext_resource type="Script" uid="uid://dx5r6aspfrw10" path="res://scenes/player/ground_state.gd" id="16_v5i4m"]
-[ext_resource type="Script" uid="uid://enk6ftwhrebu" path="res://scenes/player/air_state.gd" id="20_p1lr0"]
-[ext_resource type="Script" uid="uid://s4nhvb0s0jgc" path="res://scenes/player/landing_state.gd" id="21_ro0t8"]
+[ext_resource type="Script" uid="uid://chhd6vawmamo8" path="res://scenes/player/state_debug_label.gd" id="16_8qjgm"]
+[ext_resource type="Script" uid="uid://cn1pkipx1ex5s" path="res://scenes/player/health_component.gd" id="16_ro0t8"]
+[ext_resource type="Script" uid="uid://cddsa4jqrpo6b" path="res://scenes/player/states/idle_state.gd" id="17_kswpp"]
+[ext_resource type="Script" uid="uid://c387lvipjtw6o" path="res://scenes/player/hurtbox_component.gd" id="17_p1lr0"]
+[ext_resource type="Script" uid="uid://b4n34k5okmtue" path="res://scenes/player/states/run_state.gd" id="18_2xrq6"]
+[ext_resource type="Script" uid="uid://b388w2xausnuh" path="res://scenes/player/hitbox_component.gd" id="18_ro0t8"]
+[ext_resource type="Script" uid="uid://doqw2wb1ceh2l" path="res://scenes/player/states/jump_state.gd" id="19_pi3ps"]
+[ext_resource type="Script" uid="uid://cj7ptn52jmw5q" path="res://scenes/player/states/fall_state.gd" id="20_kswpp"]
+[ext_resource type="Script" uid="uid://bqcdalmpfc5qk" path="res://scenes/player/attack_state.gd" id="24_8nn5r"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_8nn5r"]
+atlas = ExtResource("3_v5i4m")
+region = Rect2(0, 0, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_kvwax"]
+atlas = ExtResource("3_v5i4m")
+region = Rect2(128, 0, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_x3qp0"]
+atlas = ExtResource("3_v5i4m")
+region = Rect2(256, 0, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_76i7i"]
+atlas = ExtResource("4_p1lr0")
+region = Rect2(0, 0, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_mndc6"]
+atlas = ExtResource("4_p1lr0")
+region = Rect2(128, 0, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_1hh02"]
+atlas = ExtResource("4_p1lr0")
+region = Rect2(256, 0, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_5ttev"]
+atlas = ExtResource("4_p1lr0")
+region = Rect2(384, 0, 128, 128)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_mlfor"]
 atlas = ExtResource("2_aqcbf")
@@ -142,6 +177,32 @@ region = Rect2(1152, 0, 128, 128)
 animations = [{
 "frames": [{
 "duration": 1.0,
+"texture": SubResource("AtlasTexture_8nn5r")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_kvwax")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_x3qp0")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_76i7i")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_mndc6")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_1hh02")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_5ttev")
+}],
+"loop": true,
+"name": &"attack",
+"speed": 12.0
+}, {
+"frames": [{
+"duration": 1.0,
 "texture": SubResource("AtlasTexture_mlfor")
 }],
 "loop": false,
@@ -218,7 +279,7 @@ animations = [{
 }],
 "loop": true,
 "name": &"jump",
-"speed": 15.0
+"speed": 12.0
 }, {
 "frames": [{
 "duration": 1.0,
@@ -259,55 +320,89 @@ animations = [{
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_83hs8"]
 radius = 6.0
 
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_ro0t8"]
+radius = 17.0
+height = 46.0
+
 [node name="Player" type="CharacterBody2D" node_paths=PackedStringArray("gravity_component", "input_component", "movement_component", "animation_component", "jump_component")]
 collision_layer = 2
 script = ExtResource("1_wnvi2")
-gravity_component = NodePath("gravity_component")
+gravity_component = NodePath("GravityComponent")
 input_component = NodePath("InputComponent")
 movement_component = NodePath("MovementComponent")
-animation_component = NodePath("animation_component")
+animation_component = NodePath("AnimationComponent")
 jump_component = NodePath("AdvancedJumpComponent")
+
+[node name="StateDebugLabel" type="Label" parent="." node_paths=PackedStringArray("state_machine")]
+offset_left = -46.0
+offset_top = -58.0
+offset_right = 63.0
+offset_bottom = -35.0
+text = "State:"
+script = ExtResource("16_8qjgm")
+state_machine = NodePath("../CharacterStateMachine")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 position = Vector2(0, -16)
 sprite_frames = SubResource("SpriteFrames_yu5hk")
-animation = &"jump"
+animation = &"attack"
 autoplay = "idle"
-frame_progress = 0.9518906
+frame_progress = 0.034209933
 
 [node name="Idle Col" type="CollisionShape2D" parent="."]
 position = Vector2(0, -15)
 shape = SubResource("CapsuleShape2D_83hs8")
 
-[node name="gravity_component" parent="." instance=ExtResource("7_npwbq")]
+[node name="Attack Col" type="CollisionShape2D" parent="."]
+position = Vector2(28, -18)
+rotation = 1.5707964
+shape = SubResource("CapsuleShape2D_ro0t8")
+
+[node name="GravityComponent" parent="." instance=ExtResource("7_npwbq")]
 
 [node name="MovementComponent" parent="." instance=ExtResource("8_pn6s4")]
 
 [node name="InputComponent" parent="." instance=ExtResource("9_7oing")]
 
-[node name="animation_component" parent="." node_paths=PackedStringArray("sprite") instance=ExtResource("10_7oing")]
+[node name="AnimationComponent" parent="." node_paths=PackedStringArray("sprite") instance=ExtResource("10_7oing")]
 sprite = NodePath("../AnimatedSprite2D")
 
 [node name="JumpComponent" parent="." instance=ExtResource("11_5stf6")]
 
 [node name="AdvancedJumpComponent" parent="." instance=ExtResource("12_180ig")]
 
-[node name="CharacterStateMachine" type="Node" parent="." node_paths=PackedStringArray("character", "current_state")]
+[node name="HealthComponent" type="Node" parent="."]
+script = ExtResource("16_ro0t8")
+
+[node name="HurtboxComponent" type="Node" parent="." node_paths=PackedStringArray("health_component")]
+script = ExtResource("17_p1lr0")
+health_component = NodePath("../HealthComponent")
+
+[node name="HitboxComponent" type="Node" parent="."]
+script = ExtResource("18_ro0t8")
+
+[node name="CharacterStateMachine" type="Node" parent="." node_paths=PackedStringArray("character", "current_state", "movement_component", "jump_component", "gravity_component", "animation_component")]
 script = ExtResource("13_20koh")
 character = NodePath("..")
-current_state = NodePath("GroundState")
+current_state = NodePath("Idle")
+movement_component = NodePath("../MovementComponent")
+jump_component = NodePath("../AdvancedJumpComponent")
+gravity_component = NodePath("../GravityComponent")
+animation_component = NodePath("../AnimationComponent")
 
-[node name="GroundState" type="Node" parent="CharacterStateMachine"]
-script = ExtResource("16_v5i4m")
+[node name="Idle" type="Node" parent="CharacterStateMachine"]
+script = ExtResource("17_kswpp")
 
-[node name="Running" type="Node" parent="CharacterStateMachine"]
-script = ExtResource("16_pi3ps")
+[node name="Run" type="Node" parent="CharacterStateMachine"]
+script = ExtResource("18_2xrq6")
 
-[node name="Ground" type="Node" parent="CharacterStateMachine"]
-script = ExtResource("16_v5i4m")
+[node name="Jump" type="Node" parent="CharacterStateMachine"]
+script = ExtResource("19_pi3ps")
 
-[node name="Air" type="Node" parent="CharacterStateMachine"]
-script = ExtResource("20_p1lr0")
+[node name="Fall" type="Node" parent="CharacterStateMachine"]
+script = ExtResource("20_kswpp")
 
-[node name="Landing" type="Node" parent="CharacterStateMachine"]
-script = ExtResource("21_ro0t8")
+[node name="Attack" type="Node" parent="CharacterStateMachine"]
+script = ExtResource("24_8nn5r")
+
+[node name="Debug" type="Node" parent="."]

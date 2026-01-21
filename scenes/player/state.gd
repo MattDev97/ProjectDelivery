@@ -7,7 +7,13 @@ class_name State
 @export var can_jump : bool = true
 
 var character : CharacterBody2D
+var movement_component: MovementComponent
+var jump_component: AdvancedJumpComponent
+var gravity_component: GravityComponent
+var animation_component: AnimationComponent
+
 var next_state : State
+var prev_state : State
 
 func state_process(delta):
 	pass
