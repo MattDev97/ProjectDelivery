@@ -1,4 +1,4 @@
-[gd_scene load_steps=46 format=3 uid="uid://rv0j4ek8e0bq"]
+[gd_scene load_steps=50 format=3 uid="uid://rv0j4ek8e0bq"]
 
 [ext_resource type="Texture2D" uid="uid://cuc0hgso5b7he" path="res://assets/sprites/player/male_hero_template-idle.png" id="1_3c3w1"]
 [ext_resource type="Script" uid="uid://bl4noxsft20wy" path="res://scenes/player/player.gd" id="1_wnvi2"]
@@ -12,14 +12,15 @@
 [ext_resource type="PackedScene" uid="uid://44d4hx5abgvi" path="res://scenes/components/animation_component.tscn" id="10_7oing"]
 [ext_resource type="PackedScene" uid="uid://cvatfdkchnop2" path="res://scenes/components/jump_component.tscn" id="11_5stf6"]
 [ext_resource type="PackedScene" uid="uid://cybaqaepqsu8" path="res://scenes/components/advanced_jump_component.tscn" id="12_180ig"]
+[ext_resource type="Script" uid="uid://fiaq6np0wfbp" path="res://scenes/player/character_state_machine.gd" id="13_20koh"]
+[ext_resource type="Script" uid="uid://d1rvctk2gowqy" path="res://scenes/player/running_state.gd" id="16_pi3ps"]
+[ext_resource type="Script" uid="uid://dx5r6aspfrw10" path="res://scenes/player/ground_state.gd" id="16_v5i4m"]
+[ext_resource type="Script" uid="uid://enk6ftwhrebu" path="res://scenes/player/air_state.gd" id="20_p1lr0"]
+[ext_resource type="Script" uid="uid://s4nhvb0s0jgc" path="res://scenes/player/landing_state.gd" id="21_ro0t8"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_mlfor"]
 atlas = ExtResource("2_aqcbf")
 region = Rect2(0, 0, 128, 128)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_2m0d2"]
-atlas = ExtResource("2_aqcbf")
-region = Rect2(128, 0, 128, 128)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_8nth8"]
 atlas = ExtResource("3_gskgj")
@@ -142,9 +143,6 @@ animations = [{
 "frames": [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_mlfor")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_2m0d2")
 }],
 "loop": false,
 "name": &"crouch",
@@ -220,7 +218,7 @@ animations = [{
 }],
 "loop": true,
 "name": &"jump",
-"speed": 10.0
+"speed": 15.0
 }, {
 "frames": [{
 "duration": 1.0,
@@ -275,7 +273,7 @@ position = Vector2(0, -16)
 sprite_frames = SubResource("SpriteFrames_yu5hk")
 animation = &"jump"
 autoplay = "idle"
-frame_progress = 0.79664254
+frame_progress = 0.9518906
 
 [node name="Idle Col" type="CollisionShape2D" parent="."]
 position = Vector2(0, -15)
@@ -293,3 +291,23 @@ sprite = NodePath("../AnimatedSprite2D")
 [node name="JumpComponent" parent="." instance=ExtResource("11_5stf6")]
 
 [node name="AdvancedJumpComponent" parent="." instance=ExtResource("12_180ig")]
+
+[node name="CharacterStateMachine" type="Node" parent="." node_paths=PackedStringArray("character", "current_state")]
+script = ExtResource("13_20koh")
+character = NodePath("..")
+current_state = NodePath("GroundState")
+
+[node name="GroundState" type="Node" parent="CharacterStateMachine"]
+script = ExtResource("16_v5i4m")
+
+[node name="Running" type="Node" parent="CharacterStateMachine"]
+script = ExtResource("16_pi3ps")
+
+[node name="Ground" type="Node" parent="CharacterStateMachine"]
+script = ExtResource("16_v5i4m")
+
+[node name="Air" type="Node" parent="CharacterStateMachine"]
+script = ExtResource("20_p1lr0")
+
+[node name="Landing" type="Node" parent="CharacterStateMachine"]
+script = ExtResource("21_ro0t8")

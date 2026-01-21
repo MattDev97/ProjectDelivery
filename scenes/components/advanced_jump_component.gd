@@ -16,34 +16,23 @@ func has_just_landed(body: CharacterBody2D) -> bool:
 	return body.is_on_floor() and not last_frame_on_floor and is_jumping
 
 func is_allowed_to_jump(body: CharacterBody2D, want_to_jump: bool) -> bool:
-	return want_to_jump and (body.is_on_floor() or not coyote_timer.is_stopped())
-
-func handle_jump(body: CharacterBody2D, want_to_jump: bool, jump_released: bool) -> void:
-	if has_just_landed(body):
-		is_jumping = false
-	
-	if is_allowed_to_jump(body, want_to_jump):
-		jump(body)
-	
-	handle_coyote_time(body)
-	handle_jump_buffer(body, want_to_jump)
-	handle_variable_jump_height(body, jump_released)
-	
-	is_going_up = body.velocity.y < 0 and not body.is_on_floor()
-	last_frame_on_floor = body.is_on_floor()
+	return want_to_jump and (
+			(body.is_on_floor() or not coyote_timer.is_stopped())
+				and
+			body.get_node("CharacterStateMachine").check_if_can_jump()
+		)
 
 func has_just_stepped_off_ledge(body: CharacterBody2D) -> bool:
-	return not body.is_on_floor() and last_frame_on_floor and not is_jumping	
+	return not body.is_on_floor() and last_frame_on_floor	
 
-func handle_coyote_time(body: CharacterBody2D) -> void:
-	if has_just_stepped_off_ledge(body):
-		coyote_timer.start()
+func start_coyote_timer(body: CharacterBody2D) -> void:
+	coyote_timer.start()
 		
-	if not coyote_timer.is_stopped() and not is_jumping:
-		body.velocity.y = 0
+func is_coyote_timer_running():
+	return not coyote_timer.is_stopped()
 	
 func handle_variable_jump_height(body: CharacterBody2D, jump_released: bool) -> void:
-	if jump_released and is_going_up:
+	if jump_released and char_is_going_up:
 		body.velocity.y = 0
 		
 func jump(body: CharacterBody2D) -> void:
@@ -58,3 +47,10 @@ func handle_jump_buffer(body: CharacterBody2D, want_to_jump: bool) -> void:
 		
 	if body.is_on_floor() and not jump_buffer_timer.is_stopped():
 		jump(body)
+		
+		
+func set_last_frame_on_floor(body: CharacterBody2D):
+	last_frame_on_floor = body.is_on_floor()
+
+func char_is_going_up(body: CharacterBody2D):
+	return body.velocity.y < 0 and not body.is_on_floor()
