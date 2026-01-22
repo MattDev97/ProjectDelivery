@@ -1,11 +1,18 @@
-[gd_scene load_steps=7 format=4 uid="uid://bo41dx2arq7tf"]
+[gd_scene load_steps=8 format=4 uid="uid://bo41dx2arq7tf"]
 
-[ext_resource type="Texture2D" uid="uid://mnxlwlmag0u1" path="res://assets/background/CityLayers/back.png" id="1_3dxm6"]
 [ext_resource type="TileSet" uid="uid://d2bnpoi40mdnr" path="res://assets/tileset_resources/Grey.tres" id="1_glv2v"]
-[ext_resource type="PackedScene" uid="uid://rv0j4ek8e0bq" path="res://scenes/player/Player.tscn" id="2_uu6xs"]
-[ext_resource type="Texture2D" uid="uid://breq2e4hdjvx6" path="res://assets/background/CityLayers/middle.png" id="3_trn2v"]
-[ext_resource type="Texture2D" uid="uid://c0hp7gt6l6kaf" path="res://assets/background/CityLayers/foreground.png" id="4_03owx"]
-[ext_resource type="PackedScene" uid="uid://bs7vht6h1752g" path="res://scenes/enemy/zombie.tscn" id="6_3dxm6"]
+[ext_resource type="PackedScene" uid="uid://rv0j4ek8e0bq" path="res://Player/Player.tscn" id="2_uu6xs"]
+[ext_resource type="PackedScene" uid="uid://b4a1x466l8u6w" path="res://UI/health_changed_manager.tscn" id="4_cm0pq"]
+[ext_resource type="PackedScene" uid="uid://bs7vht6h1752g" path="res://Enemies/zombie.tscn" id="6_3dxm6"]
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_r0du0"]
+load_path = "res://.godot/imported/back.png-d00f5d766ae2152f17c7b11d9ee3e26a.ctex"
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_cm0pq"]
+load_path = "res://.godot/imported/middle.png-208d46de97fb9cd2575001d4e09546fc.ctex"
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_fos0i"]
+load_path = "res://.godot/imported/foreground.png-56093de37903d4952008a3d9b26bdcb8.ctex"
 
 [node name="Main" type="Node2D"]
 
@@ -18,7 +25,7 @@ offset_left = 85.0
 offset_top = 237.0
 offset_right = 405.0
 offset_bottom = 509.0
-texture = ExtResource("1_3dxm6")
+texture = SubResource("CompressedTexture2D_r0du0")
 stretch_mode = 1
 
 [node name="Mid" type="Parallax2D" parent="."]
@@ -30,7 +37,7 @@ offset_left = 85.0
 offset_top = 237.0
 offset_right = 405.0
 offset_bottom = 509.0
-texture = ExtResource("3_trn2v")
+texture = SubResource("CompressedTexture2D_cm0pq")
 stretch_mode = 1
 
 [node name="ForeGround" type="Parallax2D" parent="."]
@@ -42,7 +49,7 @@ offset_left = 85.0
 offset_top = 237.0
 offset_right = 609.1905
 offset_bottom = 429.0
-texture = ExtResource("4_03owx")
+texture = SubResource("CompressedTexture2D_fos0i")
 expand_mode = 1
 
 [node name="Ground" type="TileMapLayer" parent="."]
@@ -58,3 +65,5 @@ position_smoothing_enabled = true
 
 [node name="Zombie" parent="." instance=ExtResource("6_3dxm6")]
 position = Vector2(351, 400)
+
+[node name="HealthChangedManager" parent="." instance=ExtResource("4_cm0pq")]
