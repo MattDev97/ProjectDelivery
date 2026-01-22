@@ -2,7 +2,8 @@ class_name AnimationComponent
 extends Node
 
 @export_subgroup("Nodes")
-@export var sprite: AnimatedSprite2D
+@onready var sprite: AnimatedSprite2D = get_parent().animated_sprite_2d
+@onready var body: CharacterBody2D = get_parent()
 
 func handle_horizontal_flip(move_direction: float) -> void:
 	if move_direction == 0:

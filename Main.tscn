@@ -1,10 +1,11 @@
-[gd_scene load_steps=6 format=4 uid="uid://bo41dx2arq7tf"]
+[gd_scene load_steps=7 format=4 uid="uid://bo41dx2arq7tf"]
 
 [ext_resource type="Texture2D" uid="uid://mnxlwlmag0u1" path="res://assets/background/CityLayers/back.png" id="1_3dxm6"]
 [ext_resource type="TileSet" uid="uid://d2bnpoi40mdnr" path="res://assets/tileset_resources/Grey.tres" id="1_glv2v"]
 [ext_resource type="PackedScene" uid="uid://rv0j4ek8e0bq" path="res://scenes/player/Player.tscn" id="2_uu6xs"]
 [ext_resource type="Texture2D" uid="uid://breq2e4hdjvx6" path="res://assets/background/CityLayers/middle.png" id="3_trn2v"]
 [ext_resource type="Texture2D" uid="uid://c0hp7gt6l6kaf" path="res://assets/background/CityLayers/foreground.png" id="4_03owx"]
+[ext_resource type="PackedScene" uid="uid://bs7vht6h1752g" path="res://scenes/enemy/zombie.tscn" id="6_3dxm6"]
 
 [node name="Main" type="Node2D"]
 
@@ -54,3 +55,6 @@ position = Vector2(245, 379)
 [node name="Camera2D" type="Camera2D" parent="Player"]
 offset = Vector2(0, -40)
 position_smoothing_enabled = true
+
+[node name="Zombie" parent="." instance=ExtResource("6_3dxm6")]
+position = Vector2(351, 400)

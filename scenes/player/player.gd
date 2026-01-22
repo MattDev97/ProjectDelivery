@@ -1,5 +1,5 @@
 extends CharacterBody2D
-@onready var animated_sprite_2d: AnimatedSprite2D = $Punk
+
 enum State {
 	Idle, Run, Jump, Fall, Crouch
 }
@@ -11,6 +11,8 @@ const JUMP_VELOCITY = -700.0
 const JUMP_HORIZONTAL = 100
 const GRAVITY = 2500
 
+@export var animated_sprite_2d: AnimatedSprite2D
+
 @export_subgroup("Nodes")
 @export var gravity_component: GravityComponent
 @export var input_component: InputComponent
@@ -19,6 +21,10 @@ const GRAVITY = 2500
 @export var jump_component: AdvancedJumpComponent
 
 @onready var state_machine: CharacterStateMachine = $CharacterStateMachine
+
+func _ready() -> void:
+	if animated_sprite_2d != null:
+		animated_sprite_2d.visible = true
 
 func _physics_process(delta) -> void:
 	#gravity_component.handle_gravity(self, delta)
