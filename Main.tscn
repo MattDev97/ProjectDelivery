@@ -1,14 +1,10 @@
-[gd_scene load_steps=9 format=4 uid="uid://bo41dx2arq7tf"]
+[gd_scene load_steps=6 format=4 uid="uid://bo41dx2arq7tf"]
 
 [ext_resource type="Texture2D" uid="uid://mnxlwlmag0u1" path="res://assets/background/CityLayers/back.png" id="1_3dxm6"]
 [ext_resource type="TileSet" uid="uid://d2bnpoi40mdnr" path="res://assets/tileset_resources/Grey.tres" id="1_glv2v"]
 [ext_resource type="PackedScene" uid="uid://rv0j4ek8e0bq" path="res://scenes/player/Player.tscn" id="2_uu6xs"]
 [ext_resource type="Texture2D" uid="uid://breq2e4hdjvx6" path="res://assets/background/CityLayers/middle.png" id="3_trn2v"]
 [ext_resource type="Texture2D" uid="uid://c0hp7gt6l6kaf" path="res://assets/background/CityLayers/foreground.png" id="4_03owx"]
-[ext_resource type="Texture2D" uid="uid://dw5oyad45pqu1" path="res://assets/sprites/3 Objects/Vending machines/2.png" id="6_lgr22"]
-[ext_resource type="PackedScene" uid="uid://dk0h5acav7nc6" path="res://scenes/components/gravity.tscn" id="7_trn2v"]
-
-[sub_resource type="CircleShape2D" id="CircleShape2D_03owx"]
 
 [node name="Main" type="Node2D"]
 
@@ -58,14 +54,3 @@ position = Vector2(245, 379)
 [node name="Camera2D" type="Camera2D" parent="Player"]
 offset = Vector2(0, -40)
 position_smoothing_enabled = true
-
-[node name="CharacterBody2D" type="CharacterBody2D" parent="."]
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="CharacterBody2D"]
-shape = SubResource("CircleShape2D_03owx")
-
-[node name="Sprite2D" type="Sprite2D" parent="CharacterBody2D"]
-position = Vector2(350, 261)
-texture = ExtResource("6_lgr22")
-
-[node name="gravity_component" parent="CharacterBody2D" instance=ExtResource("7_trn2v")]
