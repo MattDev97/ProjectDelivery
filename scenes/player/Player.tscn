@@ -1,4 +1,4 @@
-[gd_scene load_steps=65 format=3 uid="uid://rv0j4ek8e0bq"]
+[gd_scene load_steps=62 format=3 uid="uid://rv0j4ek8e0bq"]
 
 [ext_resource type="Texture2D" uid="uid://cuc0hgso5b7he" path="res://assets/sprites/player/male_hero_template-idle.png" id="1_3c3w1"]
 [ext_resource type="Script" uid="uid://bl4noxsft20wy" path="res://scenes/player/player.gd" id="1_wnvi2"]
@@ -16,11 +16,8 @@
 [ext_resource type="PackedScene" uid="uid://cybaqaepqsu8" path="res://scenes/components/advanced_jump_component.tscn" id="12_180ig"]
 [ext_resource type="Script" uid="uid://fiaq6np0wfbp" path="res://scenes/player/character_state_machine.gd" id="13_20koh"]
 [ext_resource type="Script" uid="uid://chhd6vawmamo8" path="res://scenes/player/state_debug_label.gd" id="16_8qjgm"]
-[ext_resource type="Script" uid="uid://cn1pkipx1ex5s" path="res://scenes/player/health_component.gd" id="16_ro0t8"]
 [ext_resource type="Script" uid="uid://cddsa4jqrpo6b" path="res://scenes/player/states/idle_state.gd" id="17_kswpp"]
-[ext_resource type="Script" uid="uid://c387lvipjtw6o" path="res://scenes/player/hurtbox_component.gd" id="17_p1lr0"]
 [ext_resource type="Script" uid="uid://b4n34k5okmtue" path="res://scenes/player/states/run_state.gd" id="18_2xrq6"]
-[ext_resource type="Script" uid="uid://b388w2xausnuh" path="res://scenes/player/hitbox_component.gd" id="18_ro0t8"]
 [ext_resource type="Script" uid="uid://doqw2wb1ceh2l" path="res://scenes/player/states/jump_state.gd" id="19_pi3ps"]
 [ext_resource type="Script" uid="uid://cj7ptn52jmw5q" path="res://scenes/player/states/fall_state.gd" id="20_kswpp"]
 [ext_resource type="Script" uid="uid://bqcdalmpfc5qk" path="res://scenes/player/attack_state.gd" id="24_8nn5r"]
@@ -197,7 +194,7 @@ animations = [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_5ttev")
 }],
-"loop": true,
+"loop": false,
 "name": &"attack",
 "speed": 12.0
 }, {
@@ -357,6 +354,7 @@ shape = SubResource("CapsuleShape2D_83hs8")
 position = Vector2(28, -18)
 rotation = 1.5707964
 shape = SubResource("CapsuleShape2D_ro0t8")
+disabled = true
 
 [node name="GravityComponent" parent="." instance=ExtResource("7_npwbq")]
 
@@ -371,23 +369,12 @@ sprite = NodePath("../AnimatedSprite2D")
 
 [node name="AdvancedJumpComponent" parent="." instance=ExtResource("12_180ig")]
 
-[node name="HealthComponent" type="Node" parent="."]
-script = ExtResource("16_ro0t8")
-
-[node name="HurtboxComponent" type="Node" parent="." node_paths=PackedStringArray("health_component")]
-script = ExtResource("17_p1lr0")
-health_component = NodePath("../HealthComponent")
-
-[node name="HitboxComponent" type="Node" parent="."]
-script = ExtResource("18_ro0t8")
-
-[node name="CharacterStateMachine" type="Node" parent="." node_paths=PackedStringArray("character", "current_state", "movement_component", "jump_component", "gravity_component", "animation_component")]
+[node name="CharacterStateMachine" type="Node" parent="." node_paths=PackedStringArray("character", "current_state", "movement_component", "jump_component", "animation_component")]
 script = ExtResource("13_20koh")
 character = NodePath("..")
 current_state = NodePath("Idle")
 movement_component = NodePath("../MovementComponent")
 jump_component = NodePath("../AdvancedJumpComponent")
-gravity_component = NodePath("../GravityComponent")
 animation_component = NodePath("../AnimationComponent")
 
 [node name="Idle" type="Node" parent="CharacterStateMachine"]
@@ -402,7 +389,8 @@ script = ExtResource("19_pi3ps")
 [node name="Fall" type="Node" parent="CharacterStateMachine"]
 script = ExtResource("20_kswpp")
 
-[node name="Attack" type="Node" parent="CharacterStateMachine"]
+[node name="Attack" type="Node" parent="CharacterStateMachine" node_paths=PackedStringArray("attack_col")]
 script = ExtResource("24_8nn5r")
+attack_col = NodePath("../../Attack Col")
 
 [node name="Debug" type="Node" parent="."]

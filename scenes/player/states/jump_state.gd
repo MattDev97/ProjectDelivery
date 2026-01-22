@@ -9,8 +9,6 @@ func on_enter():
 	animation_component.handle_jump_animation(true, false)
 
 func state_process(delta):
-	gravity_component.handle_gravity(character, delta)
-	
 	# Air control
 	var direction = character.input_component.input_horizontal
 	movement_component.handle_horizontal_movement(character, direction)
