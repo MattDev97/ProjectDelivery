@@ -23,6 +23,10 @@ const GRAVITY = 2500
 @onready var state_machine: CharacterStateMachine = $CharacterStateMachine
 
 func _ready() -> void:
+	var character_name = Global.game_controller.character
+	animated_sprite_2d = self.get_node(character_name)
+	
+	self.get_node('AnimationComponent').sprite = animated_sprite_2d
 	if animated_sprite_2d != null:
 		animated_sprite_2d.visible = true
 

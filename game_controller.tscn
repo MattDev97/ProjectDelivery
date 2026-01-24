@@ -1,7 +1,6 @@
-[gd_scene load_steps=3 format=3 uid="uid://l10o8xxclb3l"]
+[gd_scene load_steps=2 format=3 uid="uid://l10o8xxclb3l"]
 
 [ext_resource type="Script" uid="uid://cc1u512vugshi" path="res://game_controller.gd" id="1_3iy47"]
-[ext_resource type="Texture2D" uid="uid://c51h8rhxvrubq" path="res://assets/sprites/background/city.png" id="2_soqow"]
 
 [node name="GameController" type="Node" node_paths=PackedStringArray("world_2d", "gui")]
 script = ExtResource("1_3iy47")
@@ -12,16 +11,8 @@ gui = NodePath("GUI")
 
 [node name="GUI" type="Control" parent="."]
 layout_mode = 3
-anchors_preset = 0
-offset_right = 40.0
-offset_bottom = 40.0
-
-[node name="MenuBG" type="Control" parent="GUI"]
-anchors_preset = 0
-offset_right = 40.0
-offset_bottom = 40.0
-
-[node name="City" type="Sprite2D" parent="GUI/MenuBG"]
-position = Vector2(455.2941, 180)
-scale = Vector2(1.3235294, 1.3235294)
-texture = ExtResource("2_soqow")
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2

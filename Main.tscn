@@ -61,6 +61,7 @@ position = Vector2(245, 379)
 
 [node name="Camera2D" type="Camera2D" parent="Player"]
 offset = Vector2(0, -40)
+zoom = Vector2(2, 2)
 position_smoothing_enabled = true
 
 [node name="Zombie" parent="." instance=ExtResource("6_3dxm6")]

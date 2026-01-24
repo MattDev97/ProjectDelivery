@@ -6,6 +6,8 @@ class_name GameController extends Node
 var current_2d_scene
 var current_gui_scene
 
+var character = 'Bob'
+
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	Global.game_controller = self
@@ -14,6 +16,9 @@ func _ready() -> void:
 		true,
 		false
 	)
+
+func select_character(char_name: String):
+	character = char_name
 
 func change_gui_scene(new_scene: String, delete: bool = true, keep_running: bool = false):
 	if current_gui_scene != null:
