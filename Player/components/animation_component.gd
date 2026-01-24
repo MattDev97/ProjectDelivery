@@ -5,15 +5,12 @@ extends Node
 @export var sprite: AnimatedSprite2D
 @onready var body: CharacterBody2D = get_parent()
 
-func handle_horizontal_flip(move_direction: float) -> void:
-	if move_direction == 0:
-		return
-	
-	sprite.flip_h = false if move_direction > 0 else true
-	
 func handle_move_animation(move_direction: float) -> void:
-	handle_horizontal_flip(move_direction)
-	
+	var body_scale = -1 if move_direction > 0 else 1
+	print('body_scale: ' + str(body_scale))
+	print('body.scale.x: ' + str(body.scale.x))
+	if(body.scale.x != body_scale):
+		body.scale.x *= body_scale
 	if move_direction != 0:
 		sprite.play('run')
 	else:
