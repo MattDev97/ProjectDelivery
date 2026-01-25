@@ -21,9 +21,15 @@ func _ready():
 			child.movement_component = movement_component
 			child.jump_component = jump_component
 			child.animation_component = animation_component
+			
+			child.connect("interrupt_state", on_state_interrupt_state)
 		else:
 			push_warning("Child " + child.name + " is not a state for CharacterStateMachine.")
-
+	
+	await get_tree().process_frame
+	if current_state != null:
+		current_state.on_enter()
+		
 func _physics_process(delta: float) -> void:
 	if(current_state.next_state != null):
 		switch_states(current_state.next_state)
@@ -51,3 +57,6 @@ func switch_states(new_state : State):
 
 func _input(event : InputEvent):
 	current_state.state_input(event)
+	
+func on_state_interrupt_state(new_state : State):
+	switch_states(new_state)

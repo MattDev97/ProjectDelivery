@@ -1,4 +1,4 @@
-[gd_scene load_steps=93 format=3 uid="uid://rv0j4ek8e0bq"]
+[gd_scene load_steps=94 format=3 uid="uid://rv0j4ek8e0bq"]
 
 [ext_resource type="Texture2D" uid="uid://cuc0hgso5b7he" path="res://assets/sprites/player/Bob/male_hero_template-idle.png" id="1_3c3w1"]
 [ext_resource type="Script" uid="uid://bl4noxsft20wy" path="res://Player/player.gd" id="1_wnvi2"]
@@ -26,6 +26,7 @@
 [ext_resource type="Texture2D" uid="uid://dxv2cdj64vwmw" path="res://assets/sprites/player/2 Punk/Punk_jump.png" id="24_76i7i"]
 [ext_resource type="Texture2D" uid="uid://bjf526dd75pdf" path="res://assets/sprites/player/2 Punk/Punk_run.png" id="25_mndc6"]
 [ext_resource type="Script" uid="uid://c1kwytt5rc3qn" path="res://Player/actions/attack.gd" id="26_x3qp0"]
+[ext_resource type="Script" uid="uid://56jvapvdt2q" path="res://Player/FacingCollisionShape2d.gd" id="27_hqjia"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_8nn5r"]
 atlas = ExtResource("3_v5i4m")
@@ -201,7 +202,7 @@ animations = [{
 }],
 "loop": false,
 "name": &"attack",
-"speed": 12.0
+"speed": 18.0
 }, {
 "frames": [{
 "duration": 1.0,
@@ -555,11 +556,12 @@ script = ExtResource("16_8qjgm")
 state_machine = NodePath("../CharacterStateMachine")
 
 [node name="Bob" type="AnimatedSprite2D" parent="."]
-visible = false
 position = Vector2(0, -16)
 sprite_frames = SubResource("SpriteFrames_yu5hk")
 animation = &"attack"
 autoplay = "idle"
+frame = 6
+frame_progress = 1.0
 
 [node name="Idle Col" type="CollisionShape2D" parent="."]
 position = Vector2(0, -15)
@@ -599,7 +601,7 @@ script = ExtResource("20_kswpp")
 
 [node name="Attack" type="Node" parent="CharacterStateMachine" node_paths=PackedStringArray("attack_col")]
 script = ExtResource("24_8nn5r")
-attack_col = NodePath("../../Attack/Attack Col")
+attack_col = NodePath("../../Sword/Attack Col")
 
 [node name="Debug" type="Node" parent="."]
 
@@ -612,13 +614,20 @@ autoplay = "idle"
 frame = 5
 frame_progress = 1.0
 
-[node name="Attack" type="Area2D" parent="."]
+[node name="Sword" type="Area2D" parent="." node_paths=PackedStringArray("animation_component", "facing_shape")]
+collision_layer = 0
+collision_mask = 4
 script = ExtResource("26_x3qp0")
+animation_component = NodePath("../AnimationComponent")
+facing_shape = NodePath("Attack Col")
 
-[node name="Attack Col" type="CollisionShape2D" parent="Attack"]
+[node name="Attack Col" type="CollisionShape2D" parent="Sword"]
 position = Vector2(28, -18)
 rotation = 1.5707964
 shape = SubResource("CapsuleShape2D_ro0t8")
 disabled = true
+script = ExtResource("27_hqjia")
+facing_left_position = Vector2(-28, -18)
+facing_right_position = Vector2(28, -18)
 
-[connection signal="body_entered" from="Attack" to="Attack" method="_on_body_entered"]
+[connection signal="body_entered" from="Sword" to="Sword" method="_on_body_entered"]

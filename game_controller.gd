@@ -1,12 +1,14 @@
 class_name GameController extends Node
 
 @export var world_2d : Node2D
-@export var gui : Control
+@export var gui : CanvasLayer
 
 var current_2d_scene
 var current_gui_scene
 
 var character = 'Bob'
+
+var player_health = 100
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -19,6 +21,10 @@ func _ready() -> void:
 
 func select_character(char_name: String):
 	character = char_name
+	
+func player_health_update(hp):
+	if hp != player_health:
+		player_health = hp
 
 func change_gui_scene(new_scene: String, delete: bool = true, keep_running: bool = false):
 	if current_gui_scene != null:

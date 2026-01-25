@@ -65,6 +65,6 @@ zoom = Vector2(2, 2)
 position_smoothing_enabled = true
 
 [node name="Zombie" parent="." instance=ExtResource("6_3dxm6")]
-position = Vector2(351, 400)
+position = Vector2(350, 368)
 
 [node name="HealthChangedManager" parent="." instance=ExtResource("4_cm0pq")]

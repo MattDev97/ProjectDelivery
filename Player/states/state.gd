@@ -15,6 +15,8 @@ var animation_component: AnimationComponent
 var next_state : State
 var prev_state : State
 
+signal interrupt_state(new_state : State)
+
 func state_process(delta):
 	pass
 
