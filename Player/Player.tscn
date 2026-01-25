@@ -556,6 +556,7 @@ script = ExtResource("16_8qjgm")
 state_machine = NodePath("../CharacterStateMachine")
 
 [node name="Bob" type="AnimatedSprite2D" parent="."]
+visible = false
 position = Vector2(0, -16)
 sprite_frames = SubResource("SpriteFrames_yu5hk")
 animation = &"attack"
@@ -622,12 +623,12 @@ animation_component = NodePath("../AnimationComponent")
 facing_shape = NodePath("Attack Col")
 
 [node name="Attack Col" type="CollisionShape2D" parent="Sword"]
-position = Vector2(28, -18)
+position = Vector2(23, -17)
 rotation = 1.5707964
 shape = SubResource("CapsuleShape2D_ro0t8")
 disabled = true
 script = ExtResource("27_hqjia")
-facing_left_position = Vector2(-28, -18)
-facing_right_position = Vector2(28, -18)
+facing_left_position = Vector2(-23, -18)
+facing_right_position = Vector2(23, -18)
 
 [connection signal="body_entered" from="Sword" to="Sword" method="_on_body_entered"]

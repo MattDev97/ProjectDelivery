@@ -10,6 +10,8 @@ var character = 'Bob'
 
 var player_health = 100
 
+signal completed_objective(objective_name)
+
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	Global.game_controller = self
@@ -18,6 +20,9 @@ func _ready() -> void:
 		true,
 		false
 	)
+	
+func complete_objective(objective_id: String):
+	emit_signal("completed_objective", objective_id)
 
 func select_character(char_name: String):
 	character = char_name

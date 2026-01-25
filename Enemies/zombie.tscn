@@ -1,4 +1,4 @@
-[gd_scene load_steps=40 format=3 uid="uid://bs7vht6h1752g"]
+[gd_scene load_steps=42 format=3 uid="uid://bs7vht6h1752g"]
 
 [ext_resource type="Texture2D" uid="uid://df63wdxl8obx4" path="res://assets/sprites/Enemies/Attack.png" id="1_bmpm8"]
 [ext_resource type="Script" uid="uid://dxi4vbj77k7mv" path="res://Enemies/zombie.gd" id="1_tv4ep"]
@@ -12,6 +12,8 @@
 [ext_resource type="Script" uid="uid://bhnp7kyvrhnrc" path="res://Player/states/state.gd" id="9_tv4ep"]
 [ext_resource type="Script" uid="uid://4ufn26f0t6p6" path="res://Enemies/HitState.gd" id="10_1foqj"]
 [ext_resource type="Script" uid="uid://cnkb8ro7epcm" path="res://Enemies/enemy_walk.gd" id="11_1foqj"]
+[ext_resource type="Script" uid="uid://bpbuwyobdtk6r" path="res://Enemies/vision.gd" id="13_8vfnk"]
+[ext_resource type="Script" uid="uid://bb3amjdcto7w4" path="res://Enemies/enemy_idle_state.gd" id="13_b0fsu"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_fos0i"]
 height = 42.0
@@ -213,22 +215,23 @@ animations = [{
 }]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_1foqj"]
-size = Vector2(231.8125, 66)
+size = Vector2(231.8125, 49)
 
-[node name="Zombie" type="CharacterBody2D" node_paths=PackedStringArray("hit_state")]
+[node name="Zombie" type="CharacterBody2D" node_paths=PackedStringArray("hit_state", "vision", "damageable")]
 collision_layer = 4
 script = ExtResource("1_tv4ep")
 hit_state = NodePath("CharacterStateMachine/Hit")
+vision = NodePath("Vision")
+damageable = NodePath("Damageable")
 
 [node name="Zombie Collision" type="CollisionShape2D" parent="."]
-visible = false
 position = Vector2(0, -20)
 shape = SubResource("CapsuleShape2D_fos0i")
 
 [node name="Zombie" type="AnimatedSprite2D" parent="."]
 position = Vector2(10, -23)
 sprite_frames = SubResource("SpriteFrames_gu6ey")
-animation = &"die"
+animation = &"walk"
 autoplay = "idle"
 
 [node name="Damageable" type="Node" parent="." node_paths=PackedStringArray("animated_sprite_2d")]
@@ -240,7 +243,7 @@ animated_sprite_2d = NodePath("../Zombie")
 [node name="CharacterStateMachine" type="Node" parent="." node_paths=PackedStringArray("character", "current_state")]
 script = ExtResource("8_n1r24")
 character = NodePath("..")
-current_state = NodePath("Walk")
+current_state = NodePath("Idle")
 metadata/_custom_type_script = "uid://fiaq6np0wfbp"
 
 [node name="Dead" type="Node" parent="CharacterStateMachine"]
@@ -267,11 +270,21 @@ metadata/_custom_type_script = "uid://bhnp7kyvrhnrc"
 wait_time = 0.25
 one_shot = true
 
+[node name="Idle" type="Node" parent="CharacterStateMachine" node_paths=PackedStringArray("animated_sprite_2d")]
+script = ExtResource("13_b0fsu")
+animated_sprite_2d = NodePath("../../Zombie")
+metadata/_custom_type_script = "uid://bhnp7kyvrhnrc"
+
 [node name="Vision" type="Area2D" parent="."]
+collision_layer = 2
+collision_mask = 2
+script = ExtResource("13_8vfnk")
 
 [node name="VisionCollision" type="CollisionShape2D" parent="Vision"]
-position = Vector2(0, -32)
+position = Vector2(0, -23.5)
 shape = SubResource("RectangleShape2D_1foqj")
 
 [connection signal="animation_finished" from="Zombie" to="Damageable" method="_on_zombie_animation_finished"]
 [connection signal="timeout" from="CharacterStateMachine/Hit/Timer" to="CharacterStateMachine/Hit" method="_on_timer_timeout"]
+[connection signal="body_entered" from="Vision" to="Vision" method="_on_body_entered"]
+[connection signal="body_exited" from="Vision" to="Vision" method="_on_body_exited"]

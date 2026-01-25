@@ -1,0 +1,9 @@
+[gd_resource type="Resource" script_class="Objective" load_steps=2 format=3 uid="uid://dumwfxkv3cofl"]
+
+[ext_resource type="Script" uid="uid://dsc13pekqib1f" path="res://Scripts/objective.gd" id="1_5o0w0"]
+
+[resource]
+script = ExtResource("1_5o0w0")
+objective_id = "order_andy_2"
+objective_text = "- Deliver order to andy"
+metadata/_custom_type_script = "uid://dsc13pekqib1f"

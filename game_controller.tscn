@@ -1,6 +1,7 @@
-[gd_scene load_steps=2 format=3 uid="uid://l10o8xxclb3l"]
+[gd_scene load_steps=3 format=3 uid="uid://l10o8xxclb3l"]
 
 [ext_resource type="Script" uid="uid://cc1u512vugshi" path="res://game_controller.gd" id="1_3iy47"]
+[ext_resource type="AudioStream" uid="uid://cpkffxx7nronx" path="res://assets/music/8-bit-game-158815.mp3" id="2_soqow"]
 
 [node name="GameController" type="Node" node_paths=PackedStringArray("world_2d", "gui")]
 script = ExtResource("1_3iy47")
@@ -10,3 +11,8 @@ gui = NodePath("GUI")
 [node name="World2D" type="Node2D" parent="."]
 
 [node name="GUI" type="CanvasLayer" parent="."]
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("2_soqow")
+volume_db = -80.0
+autoplay = true

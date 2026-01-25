@@ -19,7 +19,6 @@ func _on_body_entered(body: Node2D) -> void:
 				child.hit(damage, Vector2.LEFT)
 			else:
 				child.hit(damage, Vector2.ZERO)
-	print(body.name)
 	pass # Replace with function body.
 
 func _on_player_facing_direction_changed(facing_right : bool):
