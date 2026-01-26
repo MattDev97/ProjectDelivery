@@ -8,7 +8,6 @@ func on_enter():
 
 func state_process(delta):	
 	var direction = character.input_component.input_horizontal
-	movement_component.handle_horizontal_movement(character, direction)
 	animation_component.handle_move_animation(direction)
 	
 	# 1. Transition to Idle

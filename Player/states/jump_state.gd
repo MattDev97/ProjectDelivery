@@ -11,7 +11,6 @@ func on_enter():
 func state_process(delta):
 	# Air control
 	var direction = character.input_component.input_horizontal
-	movement_component.handle_horizontal_movement(character, direction)
 	
 	# Variable Jump Height (releasing button cuts jump short)
 	if character.input_component.get_jump_input_released():

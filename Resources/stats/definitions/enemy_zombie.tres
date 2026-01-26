@@ -1,0 +1,10 @@
+[gd_resource type="Resource" script_class="BaseStats" load_steps=2 format=3 uid="uid://d4f8acclg0elo"]
+
+[ext_resource type="Script" uid="uid://cvt2wh6qfd8nr" path="res://Resources/stats/base_stats.gd" id="1_meckd"]
+
+[resource]
+script = ExtResource("1_meckd")
+base_damage = 15.0
+attack_speed_modifier = 0.8
+move_speed = 80.0
+metadata/_custom_type_script = "uid://cvt2wh6qfd8nr"

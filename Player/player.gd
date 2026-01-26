@@ -35,8 +35,6 @@ func take_damage(amount):
 	current_hp -= amount
 	
 	Global.game_controller.player_health_update(current_hp)
-	# Emit the signal!
-	
 
 func _ready() -> void:
 	var character_name = Global.game_controller.character
@@ -49,15 +47,9 @@ func _ready() -> void:
 
 func _physics_process(delta) -> void:
 	
-	#gravity_component.handle_gravity(self, delta)
-	#movement_component.handle_horizontal_movement(self, input_component.input_horizontal)
-	#jump_component.handle_jump(self, input_component.get_jump_input(), input_component.get_jump_input_released())
-	
-
-	#if is_on_floor():
-		#animation_component.handle_move_animation(input_component.input_horizontal)
-
-	#animation_component.handle_jump_animation(jump_component.is_going_up, gravity_component.is_falling)
+	if state_machine.current_state != null && state_machine.current_state.can_move == true:
+		var direction = input_component.input_horizontal
+		movement_component.handle_horizontal_movement(self, direction)
 
 	move_and_slide()
 	

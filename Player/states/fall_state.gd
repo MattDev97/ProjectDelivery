@@ -16,8 +16,6 @@ func on_enter():
 func state_process(delta):
 		
 	var direction = character.input_component.input_horizontal
-	movement_component.handle_horizontal_movement(character, direction)
-	
 	# Buffer the jump (remember input if we press it right before landing)
 	jump_component.handle_jump_buffer(character, character.input_component.get_jump_input())
 	

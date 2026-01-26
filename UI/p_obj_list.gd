@@ -15,7 +15,7 @@ func _ready() -> void:
 
 func _on_completed_objective(objective_id : String):
 	for obj_node in objective_nodes:
-		if objective_id == obj_node.obj_id:
+		if objective_id == obj_node.obj_id && !obj_node.obj_completed:
 			obj_node.complete_objective()
 			if obj_node.next_objective != null:
 				add_new_objective(obj_node.next_objective)

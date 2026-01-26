@@ -44,6 +44,7 @@ script = ExtResource("1_c8xti")
 
 [node name="Label" type="Label" parent="Panel/BottomContainer/Player Healthbar"]
 layout_mode = 2
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 0.9764706)
 text = "HP:"
 
 [node name="HP Bar" type="Control" parent="Panel/BottomContainer/Player Healthbar"]

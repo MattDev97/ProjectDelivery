@@ -20,5 +20,4 @@ func on_player_enter(body) -> void:
 	
 func _input(event) -> void:
 	if Input.is_action_just_pressed("interact") && can_interact:
-		print('delivered candy')
 		Global.game_controller.complete_objective("order_andy_2")
