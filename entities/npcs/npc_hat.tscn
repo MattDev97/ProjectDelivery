@@ -1,0 +1,99 @@
+[gd_scene load_steps=13 format=3 uid="uid://chiqh0lxkxi1"]
+
+[ext_resource type="Script" uid="uid://xpxfb2g26e4y" path="res://entities/npcs/npc_hat.gd" id="1_1xpp1"]
+[ext_resource type="Texture2D" uid="uid://bb26p1kqyb1ji" path="res://assets/sprites/npcs/11/Idle.png" id="1_vw8s2"]
+[ext_resource type="Script" uid="uid://dkc35751dxvbs" path="res://entities/npcs/interaction_zone.gd" id="3_fmls3"]
+[ext_resource type="Texture2D" uid="uid://buyg6icai84nm" path="res://assets/ui/Keyboard Letters and Symbols (1).png" id="4_67ovg"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_1xpp1"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_fmls3"]
+atlas = ExtResource("1_vw8s2")
+region = Rect2(0, 0, 24, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_67ovg"]
+atlas = ExtResource("1_vw8s2")
+region = Rect2(48, 0, 24, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_cq5l0"]
+atlas = ExtResource("1_vw8s2")
+region = Rect2(96, 0, 24, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_41or6"]
+atlas = ExtResource("1_vw8s2")
+region = Rect2(144, 0, 24, 48)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_51e0g"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_fmls3")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_67ovg")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_cq5l0")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_41or6")
+}],
+"loop": true,
+"name": &"idle",
+"speed": 5.0
+}]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_67ovg"]
+radius = 24.0
+height = 96.0
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_51e0g"]
+atlas = ExtResource("4_67ovg")
+region = Rect2(16, 80, 16, 16)
+
+[node name="NPC_Hat" type="CharacterBody2D" node_paths=PackedStringArray("interaction_zone", "interaction_sprite")]
+script = ExtResource("1_1xpp1")
+interaction_zone = NodePath("InteractionZone")
+interaction_sprite = NodePath("InteractionSprite")
+
+[node name="NPCCol" type="CollisionShape2D" parent="."]
+visible = false
+position = Vector2(0, -15)
+shape = SubResource("CapsuleShape2D_1xpp1")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+position = Vector2(-2, -24)
+sprite_frames = SubResource("SpriteFrames_51e0g")
+animation = &"idle"
+autoplay = "idle"
+
+[node name="InteractionZone" type="Area2D" parent="."]
+collision_layer = 2
+collision_mask = 2
+script = ExtResource("3_fmls3")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="InteractionZone"]
+position = Vector2(0, -24)
+rotation = 1.5707964
+shape = SubResource("CapsuleShape2D_67ovg")
+
+[node name="InteractionSprite" type="TextureRect" parent="."]
+visible = false
+offset_left = -16.0
+offset_top = -72.0
+offset_right = 16.0
+offset_bottom = -40.0
+texture = SubResource("AtlasTexture_51e0g")
+
+[node name="Label" type="Label" parent="."]
+offset_left = -14.0
+offset_top = 3.0
+offset_right = 18.0
+offset_bottom = 26.0
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 0.9529412)
+theme_override_font_sizes/font_size = 11
+text = "Andy"
+
+[connection signal="body_entered" from="InteractionZone" to="InteractionZone" method="_on_body_entered"]
+[connection signal="body_exited" from="InteractionZone" to="InteractionZone" method="_on_body_exited"]

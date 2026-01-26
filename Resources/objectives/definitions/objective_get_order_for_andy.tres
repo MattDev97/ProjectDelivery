@@ -1,0 +1,11 @@
+[gd_resource type="Resource" script_class="Objective" load_steps=3 format=3 uid="uid://bamu25mioa66x"]
+
+[ext_resource type="Script" uid="uid://dsc13pekqib1f" path="res://resources/objectives/objective.gd" id="1_3fish"]
+[ext_resource type="Resource" uid="uid://dumwfxkv3cofl" path="res://resources/objectives/definitions/objective_deliver_order_to_andy.tres" id="1_dqxkq"]
+
+[resource]
+script = ExtResource("1_3fish")
+objective_id = "order_andy_1"
+objective_text = "- Get Candy For Andy"
+next_objective = ExtResource("1_dqxkq")
+metadata/_custom_type_script = "uid://dsc13pekqib1f"

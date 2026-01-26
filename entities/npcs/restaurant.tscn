@@ -1,0 +1,39 @@
+[gd_scene load_steps=6 format=3 uid="uid://c2vavxyxnovox"]
+
+[ext_resource type="Script" uid="uid://c8ck8aibvgsd4" path="res://entities/npcs/restaurant.gd" id="1_rd8bo"]
+[ext_resource type="Texture2D" uid="uid://bde4p8wgbyp7i" path="res://assets/sprites/objects/Vending machines/1.png" id="2_sf5hi"]
+[ext_resource type="Texture2D" uid="uid://buyg6icai84nm" path="res://assets/ui/Keyboard Letters and Symbols (1).png" id="3_sf5hi"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_2xjw1"]
+size = Vector2(224, 88)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_mi0is"]
+atlas = ExtResource("3_sf5hi")
+region = Rect2(16, 80, 16, 16)
+
+[node name="Restaurant" type="Area2D" node_paths=PackedStringArray("interaction_sprite")]
+collision_layer = 0
+collision_mask = 2
+script = ExtResource("1_rd8bo")
+interaction_sprite = NodePath("InteractionSprite")
+
+[node name="TextureRect" type="TextureRect" parent="."]
+offset_left = -64.0
+offset_top = -56.0
+offset_right = 64.0
+texture = ExtResource("2_sf5hi")
+
+[node name="RestaurantCol" type="CollisionShape2D" parent="."]
+position = Vector2(0, -44)
+shape = SubResource("RectangleShape2D_2xjw1")
+
+[node name="InteractionSprite" type="TextureRect" parent="."]
+visible = false
+offset_left = -16.0
+offset_top = -112.0
+offset_right = 16.0
+offset_bottom = -80.0
+texture = SubResource("AtlasTexture_mi0is")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
+[connection signal="body_exited" from="." to="." method="_on_body_exited"]

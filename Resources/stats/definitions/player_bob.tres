@@ -1,13 +1,13 @@
 [gd_resource type="Resource" script_class="PlayerStats" load_steps=2 format=3 uid="uid://jxtfa3k4j5cc"]
 
-[ext_resource type="Script" uid="uid://bfmdj0hcrmllb" path="res://Resources/stats/player_stats.gd" id="1_udv6c"]
+[ext_resource type="Script" uid="uid://bfmdj0hcrmllb" path="res://resources/stats/player_stats.gd" id="1_g3my5"]
 
 [resource]
-script = ExtResource("1_udv6c")
-jump_force = 450.0
+script = ExtResource("1_g3my5")
+jump_force = 700.0
 dash_cooldown = 0.6
 defense = 5.0
 knockback_resistance = 0.2
 base_damage = 0.0
-move_speed = 280.0
+move_speed = 1000.0
 metadata/_custom_type_script = "uid://bfmdj0hcrmllb"
