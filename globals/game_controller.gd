@@ -2,6 +2,7 @@ class_name GameController extends Node
 
 @export var world_2d : Node2D
 @export var gui : CanvasLayer
+@export var background_manager : BackgroundManager
 
 var current_2d_scene
 var current_gui_scene
@@ -20,6 +21,8 @@ func _ready() -> void:
 		true,
 		false
 	)
+	
+	background_manager.load_background("green_hill")
 	
 func complete_objective(objective_id: String):
 	emit_signal("completed_objective", objective_id)

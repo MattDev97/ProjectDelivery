@@ -1,0 +1,33 @@
+[gd_resource type="Resource" script_class="BackgroundDef" load_steps=7 format=3 uid="uid://bfy7bshwg0wox"]
+
+[ext_resource type="Texture2D" uid="uid://xbv4tbjlnq2c" path="res://assets/craftpix_tilesets/green_hill_zone/2 Background/Day/1.png" id="1_1bjjh"]
+[ext_resource type="Script" uid="uid://cxcpddlasuykb" path="res://resources/backgrounds/background_def.gd" id="1_8gipc"]
+[ext_resource type="Texture2D" uid="uid://bkk8s6fdd5u3g" path="res://assets/craftpix_tilesets/green_hill_zone/2 Background/Day/2.png" id="2_g5pbk"]
+[ext_resource type="Texture2D" uid="uid://1g3ghl0j4gcj" path="res://assets/craftpix_tilesets/green_hill_zone/2 Background/Day/3.png" id="3_rg28y"]
+[ext_resource type="Texture2D" uid="uid://c4p8sx8285mdy" path="res://assets/craftpix_tilesets/green_hill_zone/2 Background/Day/4.png" id="4_gwtl6"]
+[ext_resource type="Texture2D" uid="uid://4sj85f7toie5" path="res://assets/craftpix_tilesets/green_hill_zone/2 Background/Day/5.png" id="5_fgdfy"]
+
+[resource]
+script = ExtResource("1_8gipc")
+layers = Array[Dictionary]([{
+"offset_y": 0.0,
+"speed_x": 0.1,
+"texture": ExtResource("1_1bjjh")
+}, {
+"offset_y": 0.0,
+"speed_x": 0.2,
+"texture": ExtResource("2_g5pbk")
+}, {
+"offset_y": 0.0,
+"speed_x": 0.3,
+"texture": ExtResource("3_rg28y")
+}, {
+"offset_y": 0.0,
+"speed_x": 0.4,
+"texture": ExtResource("4_gwtl6")
+}, {
+"offset_y": 0.0,
+"speed_x": 0.5,
+"texture": ExtResource("5_fgdfy")
+}])
+metadata/_custom_type_script = "uid://cxcpddlasuykb"

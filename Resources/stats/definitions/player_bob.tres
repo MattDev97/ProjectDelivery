@@ -9,5 +9,5 @@ dash_cooldown = 0.6
 defense = 5.0
 knockback_resistance = 0.2
 base_damage = 0.0
-move_speed = 1000.0
+move_speed = 400.0
 metadata/_custom_type_script = "uid://bfmdj0hcrmllb"
