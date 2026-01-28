@@ -33,16 +33,12 @@ const GRAVITY = 2500
 @onready var animation_tree : AnimationTree = $Animation/AnimationTree
 
 @export var damageable : Damageable
+@export var knockback_speed : float = 200
 
 signal health_changed(new_hp, max_hp)
 
 var max_hp = 100
 var current_hp = 100
-
-func take_damage(amount):
-	current_hp -= amount
-	
-	Global.game_controller.player_health_update(current_hp)
 
 func _ready() -> void:
 	damageable.connect("on_hit", on_damageable_hit)
@@ -52,8 +48,13 @@ func _ready() -> void:
 	
 	if player_stats:
 		# 1. Setup Health
-		max_hp = player_stats.max_health 
+		max_hp = player_stats.max_health
 		current_hp = max_hp
+		
+		damageable.health = max_hp
+		
+		Global.game_controller.player_health = max_hp
+		Global.game_controller.max_player_health = max_hp
 		
 		# 2. Setup Movement Speed (Injecting into your component)
 		if movement_component:
@@ -66,7 +67,13 @@ func _ready() -> void:
 	
 func on_damageable_hit(node : Node, damage_amount : int, knockback_direction: Vector2):
 	if(damageable.health > 0):
+		self.velocity = knockback_speed * knockback_direction
 		take_damage(damage_amount)
+		interrupt_state('Hit')
+		
+func take_damage(amount):
+	current_hp -= amount
+	Global.game_controller.player_health_update(damageable.health)
 
 func _physics_process(delta) -> void:
 	
@@ -79,3 +86,7 @@ func _physics_process(delta) -> void:
 func set_next_state(nextStateName : String):
 	if state_machine.current_state != null:
 		state_machine.current_state.next_state = state_machine.get_node(nextStateName)
+
+func interrupt_state(stateName : String):
+	if state_machine.current_state != null:
+		state_machine.on_state_interrupt_state(state_machine.get_node(stateName))

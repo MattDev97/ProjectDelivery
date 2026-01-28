@@ -23,8 +23,8 @@ func _on_body_entered(body: Node2D) -> void:
 
 func _on_enemy_facing_direction_changed(facing_right : bool):
 	if facing_right:
-		attack_col.position.x *= -1
+		attack_col.position.x = 16
 	else:
-		attack_col.position.x *= 1
+		attack_col.position.x = -16
 	
 	

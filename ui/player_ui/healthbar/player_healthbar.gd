@@ -24,8 +24,9 @@ func _ready() -> void:
 	
 func _process(delta) -> void:
 	var player_health = Global.game_controller.player_health
+	var max_player_health = Global.game_controller.max_player_health
 	
-	update_health(player_health, 100)
+	update_health(player_health, max_player_health)
 
 # Call this function whenever the player takes damage or heals
 # Example usage: update_health(75, 100)

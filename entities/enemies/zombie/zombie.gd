@@ -33,10 +33,7 @@ func on_damageable_hit(node : Node, damage_amount : int, knockback_direction: Ve
 	else:
 		state_machine.on_state_interrupt_state(dead_state)
 		#animated_sprite.play('die')
-	
-func trigger_attack_player():
-	if damageable.isDying: return
-	interrupt_state("Attack")
+
 
 func _physics_process(delta: float) -> void:
 	move_and_slide()
@@ -53,7 +50,13 @@ func interrupt_state(stateName : String):
 	if state_machine.current_state != null:
 		state_machine.on_state_interrupt_state(state_machine.get_node(stateName))
 
+func trigger_attack_player():
+	if damageable.isDying: return
+	interrupt_state("Attack")
+
 func on_player_enter(body : Node):
+	if damageable.isDying: return
+	
 	is_following = body != null
 	player_to_follow = body
 	

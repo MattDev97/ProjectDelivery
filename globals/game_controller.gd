@@ -9,6 +9,7 @@ var current_gui_scene
 
 var character = 'Bob'
 
+var max_player_health = 150
 var player_health = 100
 
 signal completed_objective(objective_name)

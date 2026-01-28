@@ -1,4 +1,4 @@
-[gd_scene load_steps=66 format=3 uid="uid://bs7vht6h1752g"]
+[gd_scene load_steps=69 format=3 uid="uid://bs7vht6h1752g"]
 
 [ext_resource type="Script" uid="uid://dxi4vbj77k7mv" path="res://entities/enemies/zombie/zombie.gd" id="1_tv4ep"]
 [ext_resource type="Texture2D" uid="uid://pufyt3hc757l" path="res://assets/sprites/Enemies/Zombie/Attack_fixed.png" id="2_hggiy"]
@@ -10,9 +10,9 @@
 [ext_resource type="PackedScene" uid="uid://dk0h5acav7nc6" path="res://entities/player/components/gravity.tscn" id="7_goqve"]
 [ext_resource type="PackedScene" uid="uid://44d4hx5abgvi" path="res://entities/player/components/animation_component.tscn" id="8_g8h2e"]
 [ext_resource type="Script" uid="uid://fiaq6np0wfbp" path="res://entities/player/states/character_state_machine.gd" id="8_n1r24"]
-[ext_resource type="Script" uid="uid://bhnp7kyvrhnrc" path="res://entities/player/states/state.gd" id="9_tv4ep"]
 [ext_resource type="Script" uid="uid://4ufn26f0t6p6" path="res://entities/enemies/base_enemy/states/HitState.gd" id="10_1foqj"]
 [ext_resource type="Script" uid="uid://cnkb8ro7epcm" path="res://entities/enemies/base_enemy/states/enemy_walk.gd" id="11_1foqj"]
+[ext_resource type="Script" uid="uid://dpblkmbl6mipv" path="res://entities/enemies/zombie/dead_state.gd" id="11_35n3a"]
 [ext_resource type="Script" uid="uid://bpbuwyobdtk6r" path="res://entities/enemies/base_enemy/components/vision.gd" id="13_8vfnk"]
 [ext_resource type="Script" uid="uid://bb3amjdcto7w4" path="res://entities/enemies/base_enemy/states/enemy_idle_state.gd" id="13_b0fsu"]
 [ext_resource type="Script" uid="uid://bgg8ni1owunxy" path="res://entities/enemies/zombie/attack_state.gd" id="15_1rglb"]
@@ -222,7 +222,7 @@ animations = [{
 size = Vector2(356.97656, 49)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_x7ni8"]
-size = Vector2(54, 42)
+size = Vector2(66, 42)
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_hggiy"]
 radius = 22.0
@@ -230,6 +230,9 @@ height = 48.0
 
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_x7ni8"]
 animation = &"attack"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_8hb0b"]
+animation = &"die"
 
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_s1qc4"]
 animation = &"hurt"
@@ -263,16 +266,20 @@ advance_mode = 2
 
 [sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_rgapb"]
 
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_2p6uf"]
+
 [sub_resource type="AnimationNodeStateMachine" id="AnimationNodeStateMachine_hggiy"]
 states/Start/position = Vector2(251.5, 100.109375)
 states/attack/node = SubResource("AnimationNodeAnimation_x7ni8")
 states/attack/position = Vector2(483.4375, -39.5)
+states/die/node = SubResource("AnimationNodeAnimation_8hb0b")
+states/die/position = Vector2(483.71875, 246.5)
 states/hurt/node = SubResource("AnimationNodeAnimation_s1qc4")
 states/hurt/position = Vector2(669, 99)
 states/move/node = SubResource("AnimationNodeBlendSpace1D_x7ni8")
 states/move/position = Vector2(484, 100.21875)
-transitions = ["move", "attack", SubResource("AnimationNodeStateMachineTransition_s1qc4"), "attack", "move", SubResource("AnimationNodeStateMachineTransition_8hb0b"), "Start", "move", SubResource("AnimationNodeStateMachineTransition_04ede"), "move", "hurt", SubResource("AnimationNodeStateMachineTransition_i8mjy"), "hurt", "move", SubResource("AnimationNodeStateMachineTransition_rgapb")]
-graph_offset = Vector2(90, -102)
+transitions = ["move", "attack", SubResource("AnimationNodeStateMachineTransition_s1qc4"), "attack", "move", SubResource("AnimationNodeStateMachineTransition_8hb0b"), "Start", "move", SubResource("AnimationNodeStateMachineTransition_04ede"), "move", "hurt", SubResource("AnimationNodeStateMachineTransition_i8mjy"), "hurt", "move", SubResource("AnimationNodeStateMachineTransition_rgapb"), "move", "die", SubResource("AnimationNodeStateMachineTransition_2p6uf")]
+graph_offset = Vector2(40, 76)
 
 [sub_resource type="Animation" id="Animation_i8mjy"]
 length = 0.001
@@ -503,10 +510,51 @@ tracks/2/keys = {
 "values": [0, 1, 2, 3, 4, 5]
 }
 
+[sub_resource type="Animation" id="Animation_x7ni8"]
+resource_name = "die"
+step = 0.16666667
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [ExtResource("3_noydm")]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Sprite2D:hframes")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [6]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Sprite2D:frame")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.16666667, 0.33333334, 0.5, 0.6666667, 0.8333334),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [0, 1, 2, 3, 4, 5]
+}
+
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_rgapb"]
 _data = {
 &"RESET": SubResource("Animation_i8mjy"),
 &"attack": SubResource("Animation_noydm"),
+&"die": SubResource("Animation_x7ni8"),
 &"hurt": SubResource("Animation_rgapb"),
 &"idle": SubResource("Animation_04ede"),
 &"walk": SubResource("Animation_hggiy")
@@ -551,9 +599,13 @@ animation_component = NodePath("../animation_component")
 metadata/_custom_type_script = "uid://fiaq6np0wfbp"
 
 [node name="Dead" type="Node" parent="CharacterStateMachine"]
-script = ExtResource("9_tv4ep")
+script = ExtResource("11_35n3a")
 can_move = false
 metadata/_custom_type_script = "uid://bhnp7kyvrhnrc"
+
+[node name="Timer" type="Timer" parent="CharacterStateMachine/Dead"]
+wait_time = 1.192
+one_shot = true
 
 [node name="Chase" type="Node" parent="CharacterStateMachine"]
 script = ExtResource("11_1foqj")
@@ -602,7 +654,7 @@ collision_mask = 3
 script = ExtResource("18_35n3a")
 
 [node name="AttackRangeCol" type="CollisionShape2D" parent="AttackRange"]
-position = Vector2(-1, -21)
+position = Vector2(0, -21)
 shape = SubResource("RectangleShape2D_x7ni8")
 
 [node name="Attack" type="Area2D" parent="." node_paths=PackedStringArray("animation_component")]
@@ -631,6 +683,7 @@ libraries = {
 position = Vector2(0, -24)
 
 [connection signal="animation_finished" from="Zombie" to="Damageable" method="_on_zombie_animation_finished"]
+[connection signal="timeout" from="CharacterStateMachine/Dead/Timer" to="CharacterStateMachine/Dead" method="_on_timer_timeout"]
 [connection signal="timeout" from="CharacterStateMachine/Hit/Timer" to="CharacterStateMachine/Hit" method="_on_timer_timeout"]
 [connection signal="timeout" from="CharacterStateMachine/Attack/Timer" to="CharacterStateMachine/Attack" method="_on_timer_timeout"]
 [connection signal="body_entered" from="Vision" to="Vision" method="_on_body_entered"]
