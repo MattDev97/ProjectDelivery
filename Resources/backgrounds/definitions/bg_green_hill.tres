@@ -10,11 +10,7 @@
 [resource]
 script = ExtResource("1_8gipc")
 layers = Array[Dictionary]([{
-"offset_y": 0.0,
-"speed_x": 0.1,
-"texture": ExtResource("1_1bjjh")
-}, {
-"offset_y": 0.0,
+"offset_y": 10.0,
 "speed_x": 0.2,
 "texture": ExtResource("2_g5pbk")
 }, {
@@ -30,4 +26,5 @@ layers = Array[Dictionary]([{
 "speed_x": 0.5,
 "texture": ExtResource("5_fgdfy")
 }])
+background_bg = ExtResource("1_1bjjh")
 metadata/_custom_type_script = "uid://cxcpddlasuykb"

@@ -2,9 +2,9 @@
 
 [ext_resource type="Script" uid="uid://cm6uf0x5dir32" path="res://ui/char_select/punk_select.gd" id="1_4kxt3"]
 [ext_resource type="Texture2D" uid="uid://c51h8rhxvrubq" path="res://assets/sprites/background/city.png" id="1_hhfm1"]
-[ext_resource type="Texture2D" uid="uid://bjf526dd75pdf" path="res://assets/sprites/player/2 Punk/Punk_run.png" id="1_is55k"]
 [ext_resource type="Script" uid="uid://78tfrp8kjc1h" path="res://ui/char_select/bob_select.gd" id="2_is55k"]
 [ext_resource type="Texture2D" uid="uid://dl7q2h74bfkpu" path="res://assets/sprites/player/Bob/male_hero_template-run.png" id="3_4kxt3"]
+[ext_resource type="Texture2D" uid="uid://6s7mejgby6e" path="res://assets/sprites/player/1 Woodcutter/Woodcutter_run_fixed.png" id="3_k0mxl"]
 
 [sub_resource type="FontFile" id="FontFile_6vw7e"]
 subpixel_positioning = 0
@@ -74,50 +74,50 @@ corner_radius_top_right = 5
 corner_radius_bottom_right = 5
 corner_radius_bottom_left = 5
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_t6syg"]
-atlas = ExtResource("1_is55k")
-region = Rect2(0, 0, 48, 48)
+[sub_resource type="AtlasTexture" id="AtlasTexture_brx16"]
+atlas = ExtResource("3_k0mxl")
+region = Rect2(0, 0, 68, 48)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_y6s48"]
-atlas = ExtResource("1_is55k")
-region = Rect2(48, 0, 48, 48)
+[sub_resource type="AtlasTexture" id="AtlasTexture_tku4v"]
+atlas = ExtResource("3_k0mxl")
+region = Rect2(68, 0, 68, 48)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_otjfi"]
-atlas = ExtResource("1_is55k")
-region = Rect2(96, 0, 48, 48)
+[sub_resource type="AtlasTexture" id="AtlasTexture_63khb"]
+atlas = ExtResource("3_k0mxl")
+region = Rect2(136, 0, 68, 48)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_obtq6"]
-atlas = ExtResource("1_is55k")
-region = Rect2(144, 0, 48, 48)
+[sub_resource type="AtlasTexture" id="AtlasTexture_e2l5t"]
+atlas = ExtResource("3_k0mxl")
+region = Rect2(204, 0, 68, 48)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_t4ff4"]
-atlas = ExtResource("1_is55k")
-region = Rect2(192, 0, 48, 48)
+[sub_resource type="AtlasTexture" id="AtlasTexture_r8mhq"]
+atlas = ExtResource("3_k0mxl")
+region = Rect2(272, 0, 68, 48)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_w5vcv"]
-atlas = ExtResource("1_is55k")
-region = Rect2(240, 0, 48, 48)
+[sub_resource type="AtlasTexture" id="AtlasTexture_s6l3c"]
+atlas = ExtResource("3_k0mxl")
+region = Rect2(340, 0, 68, 48)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_hhfm1"]
 animations = [{
 "frames": [{
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_t6syg")
+"texture": SubResource("AtlasTexture_brx16")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_y6s48")
+"texture": SubResource("AtlasTexture_tku4v")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_otjfi")
+"texture": SubResource("AtlasTexture_63khb")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_obtq6")
+"texture": SubResource("AtlasTexture_e2l5t")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_t4ff4")
+"texture": SubResource("AtlasTexture_r8mhq")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_w5vcv")
+"texture": SubResource("AtlasTexture_s6l3c")
 }],
 "loop": true,
 "name": &"default",
@@ -261,7 +261,7 @@ text = "                 "
 script = ExtResource("1_4kxt3")
 
 [node name="Punk" type="AnimatedSprite2D" parent="Panel/VBoxContainer/HBoxContainer/Punk"]
-position = Vector2(80, 31.5)
+position = Vector2(48, 29.5)
 scale = Vector2(2.6041667, 2.6041667)
 sprite_frames = SubResource("SpriteFrames_hhfm1")
 autoplay = "default"

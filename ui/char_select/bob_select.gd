@@ -13,3 +13,5 @@ func _on_button_up() -> void:
 		false,
 		false
 	)
+	
+	Global.game_controller.background_manager.load_background("green_hill")

@@ -15,12 +15,13 @@ var isDying : bool = false
 		health = value
 
 func hit(damage : int, knockback_direction : Vector2):
+	print('got hit')
 	if isDying: return
 	health -= damage
 	
 	emit_signal("on_hit", get_parent(), damage, knockback_direction)
 	if(health <= 0):
-		animated_sprite_2d.play("die")
+		#animated_sprite_2d.play("die")
 		isDying = true
 		
 

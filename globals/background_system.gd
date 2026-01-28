@@ -21,6 +21,17 @@ func _build_parallax(def: BackgroundDef):
 	# Get the viewport height to calculate scaling
 	var viewport_height = get_viewport().get_visible_rect().size.y
 	
+	var background_tex: CompressedTexture2D = def.background_bg
+	var background_sprite: Sprite2D = Sprite2D.new()
+	
+	background_sprite.texture = background_tex
+	var canvas_node = CanvasLayer.new()
+	
+	add_child(canvas_node)
+	canvas_node.add_child(background_sprite)
+	
+	
+	
 	# 2. Build new Parallax2D nodes
 	for layer_data in def.layers:
 		var tex: Texture2D = layer_data.texture
@@ -42,7 +53,7 @@ func _build_parallax(def: BackgroundDef):
 			scale_factor = viewport_height / float(tex_height)
 		
 		# Apply scroll speed
-		p_node.scroll_scale = Vector2(speed_x, 1.0)
+		p_node.scroll_scale = Vector2(speed_x, 0.0)
 		
 		# IMPORTANT: We must scale the repeat_size too!
 		# If the image is 2x bigger, the loop point must be 2x further away.
@@ -60,7 +71,7 @@ func _build_parallax(def: BackgroundDef):
 		sprite.texture = tex
 		sprite.centered = false
 		sprite.position.y = offset_y
-		
+		print(scale_factor)
 		# Apply the scale to the visual sprite
 		# Usage: Vector2(scale_factor, scale_factor) keeps aspect ratio (Recommended)
 		# Usage: Vector2(1.0, scale_factor) stretches ONLY height (Distorts image)

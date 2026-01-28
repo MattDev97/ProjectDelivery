@@ -6,7 +6,7 @@ func on_enter():
 	# Actually perform the jump force immediately
 	jump_component.jump(character)
 	# Trigger jump animation logic here if needed
-	animation_component.handle_jump_animation(true, false)
+	animation_component.handle_travel_animation("Jump")
 
 func state_process(delta):
 	# Air control
@@ -18,7 +18,7 @@ func state_process(delta):
 	
 	# Transition: Falling
 	# If we started moving down, we are now falling
-	if character.velocity.y > 0:
+	if character.velocity.y > 0 && !character.is_on_floor():
 		character.set_next_state("Fall")
 	elif character.is_on_floor() && character.velocity.y == 0:
 		character.set_next_state("Idle") # or Run

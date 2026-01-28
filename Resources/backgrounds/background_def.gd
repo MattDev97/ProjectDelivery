@@ -33,4 +33,5 @@ extends Resource
 	}
 ]
 
+@export var background_bg : CompressedTexture2D = null
 @export var default_mirroring_x: float = 0.0 # 0 = Auto-detect based on texture width

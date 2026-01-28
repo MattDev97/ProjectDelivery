@@ -22,8 +22,6 @@ func _ready() -> void:
 		false
 	)
 	
-	background_manager.load_background("green_hill")
-	
 func complete_objective(objective_id: String):
 	emit_signal("completed_objective", objective_id)
 

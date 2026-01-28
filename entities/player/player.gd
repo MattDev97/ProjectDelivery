@@ -21,6 +21,7 @@ const GRAVITY = 2500
 
 @export var animated_sprite_2d: AnimatedSprite2D
 
+
 @export_subgroup("Nodes")
 @export var gravity_component: GravityComponent
 @export var input_component: InputComponent
@@ -28,7 +29,10 @@ const GRAVITY = 2500
 @export var animation_component: AnimationComponent
 @export var jump_component: AdvancedJumpComponent
 
-@onready var state_machine: CharacterStateMachine = $CharacterStateMachine
+@onready var state_machine : CharacterStateMachine = $CharacterStateMachine
+@onready var animation_tree : AnimationTree = $Animation/AnimationTree
+
+@export var damageable : Damageable
 
 signal health_changed(new_hp, max_hp)
 
@@ -41,15 +45,11 @@ func take_damage(amount):
 	Global.game_controller.player_health_update(current_hp)
 
 func _ready() -> void:
+	damageable.connect("on_hit", on_damageable_hit)
+	animation_tree.active = true
 	var character_name = Global.game_controller.character
 	animated_sprite_2d = self.get_node(character_name)
 	
-	animation_component.sprite = animated_sprite_2d
-	if animated_sprite_2d != null:
-		animated_sprite_2d.visible = true
-		
-	# --- MANAGING PLAYER STATS ---
-	# Overwrite internal values with data from the Resource
 	if player_stats:
 		# 1. Setup Health
 		max_hp = player_stats.max_health 
@@ -64,6 +64,9 @@ func _ready() -> void:
 			jump_component.jump_velocity = -player_stats.jump_force 
 	# ------------------------
 	
+func on_damageable_hit(node : Node, damage_amount : int, knockback_direction: Vector2):
+	if(damageable.health > 0):
+		take_damage(damage_amount)
 
 func _physics_process(delta) -> void:
 	

@@ -9,10 +9,10 @@ func on_enter():
 	if prev_state.name == 'Run' || prev_state.name == 'Idle':
 		jump_component.start_coyote_timer(character)
 	
-	animation_component.handle_jump_animation(false, true)
+	animation_component.handle_travel_animation("Fall")
 
 func state_process(delta):
-		
+	
 	var direction = character.input_component.input_horizontal
 	# Buffer the jump (remember input if we press it right before landing)
 	jump_component.handle_jump_buffer(character, character.input_component.get_jump_input())
