@@ -3,13 +3,10 @@ extends State
 class_name RunState
 
 func on_enter():
-	animation_component.handle_travel_animation("move")
 	pass 
 
 func state_process(delta):	
 	var direction = character.input_component.input_horizontal
-	
-	animation_component.handle_move_animation(direction)
 	
 	# 1. Transition to Idle
 	if direction == 0:

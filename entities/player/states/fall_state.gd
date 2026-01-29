@@ -8,8 +8,6 @@ func on_enter():
 	# or just trust the jump component's logic.
 	if prev_state.name == 'Run' || prev_state.name == 'Idle':
 		jump_component.start_coyote_timer(character)
-	
-	animation_component.handle_travel_animation("Fall")
 
 func state_process(delta):
 	
@@ -20,8 +18,10 @@ func state_process(delta):
 	# Transition: Landed
 	if character.is_on_floor():
 		if direction != 0:
+			print('set next state: Run')
 			character.set_next_state("Run")
 		else:
+			print('set next state: Idle')
 			character.set_next_state("Idle")
 	
 	# Transition: Coyote Jump

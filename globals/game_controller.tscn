@@ -1,9 +1,10 @@
-[gd_scene load_steps=5 format=3 uid="uid://l10o8xxclb3l"]
+[gd_scene load_steps=6 format=3 uid="uid://l10o8xxclb3l"]
 
 [ext_resource type="Script" uid="uid://cc1u512vugshi" path="res://globals/game_controller.gd" id="1_3iy47"]
 [ext_resource type="AudioStream" uid="uid://cpkffxx7nronx" path="res://assets/music/8-bit-game-158815.mp3" id="2_soqow"]
 [ext_resource type="Script" uid="uid://cyjopa0jve5m1" path="res://globals/background_system.gd" id="2_w80ln"]
 [ext_resource type="Texture2D" uid="uid://xbv4tbjlnq2c" path="res://assets/craftpix_tilesets/green_hill_zone/2 Background/Day/1.png" id="3_jek58"]
+[ext_resource type="PackedScene" uid="uid://pxicd5caxxvg" path="res://ui/statsheet_debug/stat_row.tscn" id="5_6tlbh"]
 
 [node name="GameController" type="Node" node_paths=PackedStringArray("world_2d", "gui", "background_manager")]
 script = ExtResource("1_3iy47")
@@ -30,3 +31,5 @@ script = ExtResource("2_w80ln")
 stream = ExtResource("2_soqow")
 volume_db = -80.0
 autoplay = true
+
+[node name="StatRow" parent="." instance=ExtResource("5_6tlbh")]

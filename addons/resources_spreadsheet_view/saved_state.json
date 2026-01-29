@@ -1,0 +1,48 @@
+{
+  "column_properties": {
+    "res://stats/": {
+      "metadata/_custom_type_script": {
+        "visibility": 0
+      },
+      "resource_local_to_scene": {
+        "visibility": 0
+      },
+      "resource_name": {
+        "visibility": 0
+      }
+    },
+    "res://stats/StatDefinitions/": {
+      "metadata/_custom_type_script": {
+        "visibility": 0
+      },
+      "resource_local_to_scene": {
+        "visibility": 0
+      },
+      "resource_name": {
+        "visibility": 1
+      },
+      "resource_path": {
+        "visibility": 1
+      }
+    },
+    "res://stats/StatSheets/": {
+      "metadata/_custom_type_script": {
+        "visibility": 0
+      },
+      "resource_local_to_scene": {
+        "visibility": 0
+      },
+      "resource_name": {
+        "visibility": 0
+      }
+    }
+  },
+  "recent_paths": [
+    "res://stats/",
+    "res://stats/StatDefinitions/",
+    "res://stats/StatSheets/"
+  ],
+  "table_functions": {
+
+  }
+}

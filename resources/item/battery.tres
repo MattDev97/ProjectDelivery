@@ -1,0 +1,14 @@
+[gd_resource type="Resource" script_class="ItemData" load_steps=5 format=3 uid="uid://dn2s1bgu10pgy"]
+
+[ext_resource type="Texture2D" uid="uid://iia7rllkh4kr" path="res://assets/icons/1 Icons/Icon14_01.png" id="1_at1br"]
+[ext_resource type="Script" uid="uid://e3hhxurpvi0t" path="res://stats/StatModifierData.gd" id="1_bmade"]
+[ext_resource type="Resource" uid="uid://b2fd6j5jtlfak" path="res://stats/StatModifiers/increase_mvmt_spd_50_perc.tres" id="2_at1br"]
+[ext_resource type="Script" uid="uid://erxxop8ivnnr" path="res://resources/item/ItemData.gd" id="3_mqjyg"]
+
+[resource]
+script = ExtResource("3_mqjyg")
+id = "battery"
+display_name = "Battery"
+icon = ExtResource("1_at1br")
+modifiers = Array[ExtResource("1_bmade")]([ExtResource("2_at1br")])
+metadata/_custom_type_script = "uid://erxxop8ivnnr"

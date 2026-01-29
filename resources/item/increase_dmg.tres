@@ -1,0 +1,14 @@
+[gd_resource type="Resource" script_class="ItemData" load_steps=5 format=3 uid="uid://wet4n2gepqs6"]
+
+[ext_resource type="Texture2D" uid="uid://drroxpe0usjt5" path="res://assets/icons/1 Icons/Icon14_06.png" id="1_10cu4"]
+[ext_resource type="Script" uid="uid://e3hhxurpvi0t" path="res://stats/StatModifierData.gd" id="2_50k25"]
+[ext_resource type="Resource" uid="uid://boy7f676f0xdv" path="res://stats/StatModifiers/increase_dmg_50_perc.tres" id="3_50k25"]
+[ext_resource type="Script" uid="uid://erxxop8ivnnr" path="res://resources/item/ItemData.gd" id="4_dba8y"]
+
+[resource]
+script = ExtResource("4_dba8y")
+id = "attack_dmg_item"
+display_name = "Attack Dmg Item"
+icon = ExtResource("1_10cu4")
+modifiers = Array[ExtResource("2_50k25")]([ExtResource("3_50k25")])
+metadata/_custom_type_script = "uid://erxxop8ivnnr"

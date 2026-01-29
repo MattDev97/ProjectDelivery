@@ -2,29 +2,19 @@ extends Node
 
 class_name Damageable
 
-@export var animated_sprite_2d: AnimatedSprite2D
-signal on_hit(node : Node, damage_taken : int, knockback_direction : Vector2)
+signal on_hit(node: Node, damage_taken: int, knockback_direction: Vector2)
+signal on_death(node: Node)
 
-var isDying : bool = false
+var isDying: bool = false
 
-@export var health : float = 50:
-	get:
-		return health
-	set(value):
-		SignalBus.emit_signal("on_health_changed", get_parent(), value - health)
-		health = value
+@export var max_health: float = 100
+@onready var health: float = max_health
 
-func hit(damage : int, knockback_direction : Vector2):
-	print('got hit')
+func hit(damage: int, knockback_direction: Vector2):
 	if isDying: return
 	health -= damage
-	
+	print('damage done: ' + str(damage))
 	emit_signal("on_hit", get_parent(), damage, knockback_direction)
-	if(health <= 0):
-		#animated_sprite_2d.play("die")
+	if (health <= 0):
 		isDying = true
-		
-
-func _on_zombie_animation_finished() -> void:
-	if animated_sprite_2d.animation == 'die':
-		get_parent().queue_free()
+		emit_signal("on_death", get_parent())

@@ -3,8 +3,7 @@ extends State
 class_name IdleState
 
 func on_enter():
-	animation_component.handle_travel_animation("move")
-	animation_component.handle_move_animation(0) # Play Idle anim
+	pass
 
 func state_process(delta):
 	

@@ -14,7 +14,6 @@ func on_enter():
 	
 	#character.velocity.x = 0
 	
-	animation_component.handle_travel_animation("attack_1")
 	attack_timer.start()
 
 func _on_timer_timeout() -> void:

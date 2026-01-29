@@ -1,0 +1,10 @@
+[gd_resource type="Resource" script_class="StatDefinition" load_steps=2 format=3 uid="uid://bypx7n4qkb3wx"]
+
+[ext_resource type="Script" uid="uid://d3s5ydx42laft" path="res://stats/StatDefinition.gd" id="1_avsge"]
+
+[resource]
+script = ExtResource("1_avsge")
+id = "health"
+display_name = "Health"
+abbreviation = "HP"
+metadata/_custom_type_script = "uid://d3s5ydx42laft"

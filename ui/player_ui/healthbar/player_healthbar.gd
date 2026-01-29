@@ -22,15 +22,13 @@ func _ready() -> void:
 	# 3. Set the color just to be safe (or set it in Inspector)
 	bar_fill.color = Color.GREEN
 	
-func _process(delta) -> void:
-	var player_health = Global.game_controller.player_health
-	var max_player_health = Global.game_controller.max_player_health
-	
-	update_health(player_health, max_player_health)
+	Global.game_controller.player.connect("health_changed", update_health)
+	#update_health(Global.game_controller.player_health, Global.game_controller.max_player_health)
 
 # Call this function whenever the player takes damage or heals
 # Example usage: update_health(75, 100)
 func update_health(current_hp: float, max_hp: float) -> void:
+	print(str(current_hp) + " / " + str(max_hp))
 	# Prevent division by zero crashes
 	if max_hp <= 0:
 		return

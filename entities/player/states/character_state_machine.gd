@@ -8,7 +8,6 @@ class_name CharacterStateMachine
 @export_subgroup("Components")
 @export var movement_component: MovementComponent
 @export var jump_component: AdvancedJumpComponent
-@export var animation_component: AnimationComponent
 
 var states : Array[State]
 
@@ -20,7 +19,6 @@ func _ready():
 			child.character = character
 			child.movement_component = movement_component
 			child.jump_component = jump_component
-			child.animation_component = animation_component
 			
 			child.connect("interrupt_state", on_state_interrupt_state)
 		else:

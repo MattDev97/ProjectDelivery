@@ -5,8 +5,6 @@ class_name JumpState
 func on_enter():
 	# Actually perform the jump force immediately
 	jump_component.jump(character)
-	# Trigger jump animation logic here if needed
-	animation_component.handle_travel_animation("Jump")
 
 func state_process(delta):
 	# Air control

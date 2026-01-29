@@ -1,0 +1,17 @@
+[gd_resource type="Resource" script_class="StatSheet" load_steps=6 format=3 uid="uid://bypwfp78k15c6"]
+
+[ext_resource type="Resource" uid="uid://bypx7n4qkb3wx" path="res://stats/StatDefinitions/HealthDef.tres" id="1_t617k"]
+[ext_resource type="Resource" uid="uid://clqa5socwqgff" path="res://stats/StatDefinitions/DamageDef.tres" id="2_yp4mi"]
+[ext_resource type="Resource" uid="uid://ctidchmjje5pa" path="res://stats/StatDefinitions/MovementSpeedDef.tres" id="3_slct5"]
+[ext_resource type="Resource" uid="uid://bv8d0pye6p8r6" path="res://stats/StatDefinitions/AttackSpeedDef.tres" id="4_ivdvs"]
+[ext_resource type="Script" uid="uid://chmbfbaqvkmc6" path="res://stats/StatSheet.gd" id="5_dojmr"]
+
+[resource]
+script = ExtResource("5_dojmr")
+base_stats = {
+ExtResource("1_t617k"): 100.0,
+ExtResource("2_yp4mi"): 20.0,
+ExtResource("3_slct5"): 50.0,
+ExtResource("4_ivdvs"): 10.0
+}
+metadata/_custom_type_script = "uid://chmbfbaqvkmc6"

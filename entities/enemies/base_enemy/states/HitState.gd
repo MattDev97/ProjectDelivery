@@ -12,7 +12,6 @@ class_name HitState
 @onready var timer : Timer = $Timer
 
 func on_enter():
-	animation_component.handle_travel_animation("hurt")
 	timer.start()
 
 func on_exit():

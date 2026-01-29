@@ -1,8 +1,10 @@
 class_name GameController extends Node
 
-@export var world_2d : Node2D
-@export var gui : CanvasLayer
-@export var background_manager : BackgroundManager
+@export var world_2d: Node2D
+@export var gui: CanvasLayer
+@export var background_manager: BackgroundManager
+
+@export var player : Player
 
 var current_2d_scene
 var current_gui_scene
@@ -13,6 +15,7 @@ var max_player_health = 150
 var player_health = 100
 
 signal completed_objective(objective_name)
+signal player_health_changed(current_hp, max_hp)
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -32,6 +35,11 @@ func select_character(char_name: String):
 func player_health_update(hp):
 	if hp != player_health:
 		player_health = hp
+		emit_signal("player_health_changed", player_health, max_player_health)
+		
+func init_player_health(max_hp):
+	max_player_health = max_hp
+	player_health = max_hp
 
 func change_gui_scene(new_scene: String, delete: bool = true, keep_running: bool = false):
 	if current_gui_scene != null:

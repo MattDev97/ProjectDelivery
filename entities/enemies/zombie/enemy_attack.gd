@@ -5,7 +5,7 @@ extends Area2D
 @onready var attack_col: CollisionShape2D = $AttackCol
 
 func _ready():
-	animation_component.connect("facing_direction_changed", _on_enemy_facing_direction_changed)
+	pass
 
 func _on_body_entered(body: Node2D) -> void:
 	for child in body.get_children():
@@ -21,10 +21,10 @@ func _on_body_entered(body: Node2D) -> void:
 				child.hit(damage, Vector2.ZERO)
 	pass # Replace with function body.
 
-func _on_enemy_facing_direction_changed(facing_right : bool):
-	if facing_right:
-		attack_col.position.x = 16
-	else:
-		attack_col.position.x = -16
-	
-	
+func _physics_process(delta: float) -> void:
+	# Poll the sprite to see which way we are facing
+	if animation_component and animation_component.sprite:
+		if animation_component.sprite.flip_h:
+			attack_col.position.x = -16
+		else:
+			attack_col.position.x = 16

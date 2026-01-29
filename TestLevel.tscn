@@ -1,8 +1,7 @@
-[gd_scene load_steps=17 format=4 uid="uid://bo41dx2arq7tf"]
+[gd_scene load_steps=20 format=4 uid="uid://bo41dx2arq7tf"]
 
 [ext_resource type="Texture2D" uid="uid://dkq1kwb8u2gpv" path="res://assets/craftpix_tilesets/green_hill_zone/3 Objects/Benches/1.png" id="1_rj4us"]
 [ext_resource type="Texture2D" uid="uid://dx2q57brt6knc" path="res://assets/sprites/tilesets/!Spritesheet Blocks Grey.png" id="1_xlsm3"]
-[ext_resource type="PackedScene" uid="uid://bs7vht6h1752g" path="res://entities/enemies/zombie/zombie.tscn" id="2_4nl3v"]
 [ext_resource type="TileSet" uid="uid://xmd3es6hrrtc" path="res://tilesets/GreenHill_Ground.tres" id="2_vvvv7"]
 [ext_resource type="Texture2D" uid="uid://c6nwi7kkca2md" path="res://assets/craftpix_tilesets/green_hill_zone/3 Objects/Bushes/20.png" id="3_uo51d"]
 [ext_resource type="PackedScene" uid="uid://b4a1x466l8u6w" path="res://ui/player_ui/healthbar/health_changed_manager.tscn" id="3_vvvv7"]
@@ -14,6 +13,10 @@
 [ext_resource type="Texture2D" uid="uid://xnh32mknexb3" path="res://assets/craftpix_tilesets/green_hill_zone/3 Objects/Fountain/2.png" id="12_sxsli"]
 [ext_resource type="Texture2D" uid="uid://b2c5g675l570e" path="res://assets/craftpix_tilesets/green_hill_zone/3 Objects/Stones/3.png" id="13_cprs5"]
 [ext_resource type="Texture2D" uid="uid://sifpji7m5gmk" path="res://assets/craftpix_tilesets/green_hill_zone/3 Objects/Benches/3.png" id="14_1u1aq"]
+[ext_resource type="PackedScene" uid="uid://bs7vht6h1752g" path="res://entities/enemies/zombie/zombie.tscn" id="14_rj4us"]
+[ext_resource type="PackedScene" uid="uid://cgymdnf00enhn" path="res://items/base_item.tscn" id="15_uo51d"]
+[ext_resource type="Resource" uid="uid://dn2s1bgu10pgy" path="res://resources/item/battery.tres" id="16_mdcl8"]
+[ext_resource type="Resource" uid="uid://wet4n2gepqs6" path="res://resources/item/increase_dmg.tres" id="17_iu18o"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_33f5c"]
 texture = ExtResource("1_xlsm3")
@@ -1714,12 +1717,6 @@ texture = ExtResource("14_1u1aq")
 position = Vector2(0, -160)
 tile_set = SubResource("TileSet_lgr22")
 
-[node name="Zombie2" parent="." instance=ExtResource("2_4nl3v")]
-position = Vector2(400, 296)
-
-[node name="Zombie" parent="." instance=ExtResource("2_4nl3v")]
-position = Vector2(832, 400)
-
 [node name="HealthChangedManager" parent="." instance=ExtResource("3_vvvv7")]
 offset_top = -160.0
 offset_bottom = -120.0
@@ -1738,3 +1735,17 @@ position = Vector2(245, 219)
 [node name="Camera2D" type="Camera2D" parent="Player"]
 offset = Vector2(0, -60)
 position_smoothing_enabled = true
+
+[node name="Zombie" parent="." instance=ExtResource("14_rj4us")]
+position = Vector2(544, 224)
+
+[node name="Zombie2" parent="." instance=ExtResource("14_rj4us")]
+position = Vector2(832, 392)
+
+[node name="MvmtSpeed Item" parent="." instance=ExtResource("15_uo51d")]
+position = Vector2(656, 336)
+item_data = ExtResource("16_mdcl8")
+
+[node name="Dmg Item" parent="." instance=ExtResource("15_uo51d")]
+position = Vector2(360, 280)
+item_data = ExtResource("17_iu18o")

@@ -1,0 +1,10 @@
+[gd_resource type="Resource" script_class="StatDefinition" load_steps=2 format=3 uid="uid://bv8d0pye6p8r6"]
+
+[ext_resource type="Script" uid="uid://d3s5ydx42laft" path="res://stats/StatDefinition.gd" id="1_381cu"]
+
+[resource]
+script = ExtResource("1_381cu")
+id = "attack_speed"
+display_name = "Attack Speed"
+abbreviation = "ATK SPD"
+metadata/_custom_type_script = "uid://d3s5ydx42laft"
