@@ -1732,15 +1732,47 @@ collision_mask = 3
 [node name="Player" parent="." instance=ExtResource("6_7s355")]
 position = Vector2(245, 219)
 
-[node name="Camera2D" type="Camera2D" parent="Player"]
-offset = Vector2(0, -60)
-position_smoothing_enabled = true
-
 [node name="Zombie" parent="." instance=ExtResource("14_rj4us")]
-position = Vector2(544, 224)
+position = Vector2(928, 392)
+
+[node name="Zombie14" parent="." instance=ExtResource("14_rj4us")]
+position = Vector2(1800, 232)
+
+[node name="Zombie13" parent="." instance=ExtResource("14_rj4us")]
+position = Vector2(1736, 232)
+
+[node name="Zombie12" parent="." instance=ExtResource("14_rj4us")]
+position = Vector2(1648, 216)
+
+[node name="Zombie11" parent="." instance=ExtResource("14_rj4us")]
+position = Vector2(1296, 240)
+
+[node name="Zombie10" parent="." instance=ExtResource("14_rj4us")]
+position = Vector2(1456, 232)
+
+[node name="Zombie9" parent="." instance=ExtResource("14_rj4us")]
+position = Vector2(1392, 232)
+
+[node name="Zombie8" parent="." instance=ExtResource("14_rj4us")]
+position = Vector2(1328, 232)
+
+[node name="Zombie7" parent="." instance=ExtResource("14_rj4us")]
+position = Vector2(360, 264)
+
+[node name="Zombie6" parent="." instance=ExtResource("14_rj4us")]
+position = Vector2(888, 336)
+
+[node name="Zombie5" parent="." instance=ExtResource("14_rj4us")]
+position = Vector2(1048, 384)
+
+[node name="Zombie4" parent="." instance=ExtResource("14_rj4us")]
+position = Vector2(1000, 384)
+
+[node name="Zombie3" parent="." instance=ExtResource("14_rj4us")]
+position = Vector2(832, 384)
 
 [node name="Zombie2" parent="." instance=ExtResource("14_rj4us")]
-position = Vector2(832, 392)
+position = Vector2(760, 384)
 
 [node name="MvmtSpeed Item" parent="." instance=ExtResource("15_uo51d")]
 position = Vector2(632, 80)

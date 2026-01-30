@@ -39,6 +39,7 @@ func on_damageable_hit(node: Node, damage_amount: int, knockback_direction: Vect
 	if (damageable.health > 0):
 		print('on damageable hit')
 		self.velocity = knockback_speed * knockback_direction
+		print('override hit state')
 		state_machine.on_state_interrupt_state(hit_state)
 	else:
 		state_machine.on_state_interrupt_state(dead_state)

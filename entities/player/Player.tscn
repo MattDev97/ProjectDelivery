@@ -1,4 +1,4 @@
-[gd_scene load_steps=141 format=3 uid="uid://rv0j4ek8e0bq"]
+[gd_scene load_steps=142 format=3 uid="uid://rv0j4ek8e0bq"]
 
 [ext_resource type="Texture2D" uid="uid://cuc0hgso5b7he" path="res://assets/sprites/player/Bob/male_hero_template-idle.png" id="1_3c3w1"]
 [ext_resource type="Script" uid="uid://b6varohc3b4y8" path="res://entities/enemies/base_enemy/components/damageable.gd" id="1_minwf"]
@@ -37,6 +37,7 @@
 [ext_resource type="Script" uid="uid://ck4dw705s4eqv" path="res://entities/player/dead_state.gd" id="32_wbbrj"]
 [ext_resource type="Script" uid="uid://dgqnbei7hsg2n" path="res://entities/player/states/action_state_machine.gd" id="35_ck0hy"]
 [ext_resource type="Script" uid="uid://xjjuq515p7ki" path="res://entities/player/states/action_idle.gd" id="36_fs2qx"]
+[ext_resource type="Script" uid="uid://b0xnlum3xnhie" path="res://entities/player/camera_2d.gd" id="38_g3kjw"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_83hs8"]
 radius = 6.0
@@ -1104,7 +1105,7 @@ animations = [{
 "speed": 12.0
 }]
 
-[node name="Player" type="CharacterBody2D" node_paths=PackedStringArray("animated_sprite_2d", "gravity_component", "input_component", "movement_component", "animation_component", "action_animation_component", "jump_component", "inventory_component", "damageable")]
+[node name="Player" type="CharacterBody2D" node_paths=PackedStringArray("animated_sprite_2d", "gravity_component", "input_component", "movement_component", "animation_component", "action_animation_component", "jump_component", "inventory_component", "damageable", "camera")]
 collision_layer = 2
 script = ExtResource("1_wnvi2")
 animated_sprite_2d = NodePath("Woodcutter")
@@ -1116,6 +1117,7 @@ action_animation_component = NodePath("ActionAnimationComponent")
 jump_component = NodePath("AdvancedJumpComponent")
 inventory_component = NodePath("InventoryComponent")
 damageable = NodePath("Damageable")
+camera = NodePath("Camera2D")
 
 [node name="Player Hurtbox" type="CollisionShape2D" parent="."]
 position = Vector2(0, -15)
@@ -1280,6 +1282,11 @@ offset_bottom = -35.0
 text = "State:"
 script = ExtResource("16_8qjgm")
 state_machine = NodePath("../CharacterStateMachine")
+
+[node name="Camera2D" type="Camera2D" parent="."]
+zoom = Vector2(2, 2)
+position_smoothing_enabled = true
+script = ExtResource("38_g3kjw")
 
 [connection signal="timeout" from="CharacterStateMachine/Hit/Timer" to="CharacterStateMachine/Hit" method="_on_timer_timeout"]
 [connection signal="timeout" from="CharacterStateMachine/Dead/Timer" to="CharacterStateMachine/Dead" method="_on_timer_timeout"]

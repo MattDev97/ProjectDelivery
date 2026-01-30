@@ -36,6 +36,8 @@ const FRICTION = 1000.0 # Ground friction when not moving
 @export var damageable: Damageable
 @export var knockback_impulse: Vector2 = Vector2(100, -200)
 
+@export var camera : Camera2D
+
 var state_dictionary: Dictionary
 
 signal health_changed(new_hp, max_hp)
@@ -86,6 +88,9 @@ func on_damageable_hit(node: Node, damage_amount: int, knockback_direction: Vect
 		self.velocity = Vector2(knockback_impulse.x * knockback_direction.x, knockback_impulse.y)
 		#take_damage(damage_amount)
 		interrupt_state('Hit')
+		
+		if camera:
+			camera.shake(1, 5)
 	else:
 		set_next_state('Dead')
 		

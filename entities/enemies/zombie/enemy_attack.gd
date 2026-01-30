@@ -8,6 +8,8 @@ func _ready():
 	pass
 
 func _on_body_entered(body: Node2D) -> void:
+	if body is not Player:  return
+	
 	for child in body.get_children():
 		if child is Damageable:
 			var direction_to_damageable = (body.global_position - get_parent().global_position)

@@ -4,7 +4,7 @@ class_name GameController extends Node
 @export var gui: CanvasLayer
 @export var background_manager: BackgroundManager
 
-@export var player : Player
+@export var player: Player
 
 var current_2d_scene
 var current_gui_scene
@@ -65,3 +65,14 @@ func change_2d_scene(new_scene: String, delete: bool = true, keep_running: bool 
 	var new = load(new_scene).instantiate()
 	world_2d.add_child(new)
 	current_2d_scene = new
+
+func hit_pause(duration: float):
+	get_tree().paused = true # Pause the game tree
+	
+	# Create a temporary timer that will run even when paused (because the Autoload
+	# containing this script would be set to process mode 'Always' or created to not
+	# inherit the pause state)
+	var timer = get_tree().create_timer(duration, true)
+	await timer.timeout
+	
+	get_tree().paused = false # Unpause the game tree
