@@ -12,6 +12,7 @@ var current_state
 const JUMP_VELOCITY = -700.0
 const JUMP_HORIZONTAL = 100
 const GRAVITY = 2500
+const FRICTION = 1000.0 # Ground friction when not moving
 
 @export var animated_sprite_2d: AnimatedSprite2D
 @onready var stat_controller: StatController = $StatController
@@ -21,15 +22,19 @@ const GRAVITY = 2500
 @export var input_component: InputComponent
 @export var movement_component: MovementComponent
 @export var animation_component: AnimationComponent
+@export var action_animation_component: AnimationComponent
 @export var jump_component: AdvancedJumpComponent
 
-@export var inventory_component : Inventory
+@export var inventory_component: Inventory
 
 @onready var state_machine: CharacterStateMachine = $CharacterStateMachine
-@onready var animation_tree: AnimationTree = $Animation/AnimationTree
+@onready var action_state_machine: ActionStateMachine = $ActionStateMachine
+
+@onready var char_animation_tree: AnimationTree = $"Character Animation/AnimationTree"
+@onready var action_animation_tree: AnimationTree = $"Attack Animation/AnimationTree"
 
 @export var damageable: Damageable
-@export var knockback_speed: float = 200
+@export var knockback_impulse: Vector2 = Vector2(100, -200)
 
 var state_dictionary: Dictionary
 
@@ -48,18 +53,28 @@ func _ready() -> void:
 	
 	# Initialize Animation Component
 	if animation_component:
-		animation_component.animation_tree = animation_tree
+		animation_component.animation_tree = char_animation_tree
+	if action_animation_component:
+		action_animation_component.animation_tree = action_animation_tree
 	if jump_component:
 			jump_component.jump_velocity = -700
 	
 func _physics_process(delta) -> void:
 	if state_machine.current_state != null:
-		if state_machine.current_state.can_move == true:
+		var can_move = state_machine.current_state.can_move && action_state_machine.current_state.can_move
+			
+		if can_move:
 			var direction = input_component.input_horizontal
 			movement_component.handle_horizontal_movement(self , direction)
+		elif is_on_floor():
+			# Apply friction if on floor but can't move (e.g. Knockback landing)
+			velocity.x = move_toward(velocity.x, 0, FRICTION * delta)
 		
 		if animation_component:
 			animation_component.update_animations(input_component.input_horizontal, state_machine.current_state.name)
+			
+		if action_animation_component:
+			action_animation_component.update_animations(input_component.input_horizontal, action_state_machine.current_state.name)
 
 	move_and_slide()
 	
@@ -68,10 +83,13 @@ func equip_item(item: ItemData):
 	
 func on_damageable_hit(node: Node, damage_amount: int, knockback_direction: Vector2):
 	if (damageable.health > 0):
-		self.velocity = knockback_speed * knockback_direction
+		self.velocity = Vector2(knockback_impulse.x * knockback_direction.x, knockback_impulse.y)
 		#take_damage(damage_amount)
 		interrupt_state('Hit')
-		emit_signal("health_changed", damageable.health, damageable.max_health)
+	else:
+		set_next_state('Dead')
+		
+	emit_signal("health_changed", damageable.health, damageable.max_health)
 		
 func on_damageable_death():
 	print('dead state for player')

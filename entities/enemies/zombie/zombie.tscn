@@ -23,10 +23,11 @@
 [ext_resource type="Script" uid="uid://bcu578fjeuj8n" path="res://entities/enemies/zombie/attack_range.gd" id="18_35n3a"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_hggiy"]
-radius = 22.0
+radius = 17.0
 height = 48.0
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_fos0i"]
+radius = 15.0
 height = 42.0
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_x7ni8"]

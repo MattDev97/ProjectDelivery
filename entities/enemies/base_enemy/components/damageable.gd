@@ -13,7 +13,6 @@ var isDying: bool = false
 func hit(damage: int, knockback_direction: Vector2):
 	if isDying: return
 	health -= damage
-	print('damage done: ' + str(damage))
 	emit_signal("on_hit", get_parent(), damage, knockback_direction)
 	if (health <= 0):
 		isDying = true

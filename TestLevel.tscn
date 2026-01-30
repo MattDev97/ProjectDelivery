@@ -1743,9 +1743,9 @@ position = Vector2(544, 224)
 position = Vector2(832, 392)
 
 [node name="MvmtSpeed Item" parent="." instance=ExtResource("15_uo51d")]
-position = Vector2(656, 336)
+position = Vector2(632, 80)
 item_data = ExtResource("16_mdcl8")
 
 [node name="Dmg Item" parent="." instance=ExtResource("15_uo51d")]
-position = Vector2(360, 280)
+position = Vector2(384, 80)
 item_data = ExtResource("17_iu18o")

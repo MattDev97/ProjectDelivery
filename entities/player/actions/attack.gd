@@ -1,6 +1,7 @@
 extends Area2D
 
 @export var facing_shape: FacingCollisionShape2D
+@export var attack_animation : Node2D
 
 func _physics_process(_delta: float) -> void:
 	var parent = get_parent()
@@ -25,5 +26,11 @@ func _on_body_entered(body: Node2D) -> void:
 func _on_player_facing_direction_changed(facing_right: bool):
 	if facing_right:
 		facing_shape.position = facing_shape.facing_right_position
+		
+		if attack_animation:
+			attack_animation.position.x = -1 * attack_animation.position.x
 	else:
 		facing_shape.position = facing_shape.facing_left_position
+		
+		if attack_animation:
+			attack_animation.position.x = -attack_animation.position.x

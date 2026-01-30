@@ -4,7 +4,7 @@ extends CharacterBody2D
 
 @onready var state_machine: CharacterStateMachine = $CharacterStateMachine
 @onready var stat_controller: StatController = $StatController
-@export var attack_controller : Node
+@export var attack_controller: Node
 
 @export var starting_move_direction: Vector2 = Vector2.LEFT
 @export var movement_speed: float = 30
@@ -37,6 +37,7 @@ func _ready() -> void:
 
 func on_damageable_hit(node: Node, damage_amount: int, knockback_direction: Vector2):
 	if (damageable.health > 0):
+		print('on damageable hit')
 		self.velocity = knockback_speed * knockback_direction
 		state_machine.on_state_interrupt_state(hit_state)
 	else:
@@ -68,6 +69,11 @@ func interrupt_state(stateName: String):
 func trigger_attack_player():
 	if damageable.isDying: return
 	interrupt_state("Attack")
+
+func is_player_in_attack_range() -> bool:
+	if player_to_follow == null:
+		return false
+	return attack_range.overlaps_body(player_to_follow)
 
 func on_player_enter(body: Node):
 	if damageable.isDying: return
