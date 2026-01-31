@@ -14,6 +14,7 @@ extends CharacterBody2D
 @export var vision: Area2D
 
 @export var damageable: Damageable
+@export var knockback_impulse: Vector2 = Vector2(100, -200)
 @export var animation_component: AnimationComponent
 @export var movement_component: MovementComponent
 
@@ -36,10 +37,10 @@ func _ready() -> void:
 	attack_controller.damage = stat_controller.get_value("damage")
 
 func on_damageable_hit(node: Node, damage_amount: int, knockback_direction: Vector2):
+	Global.game_controller.player_camera.shake(1, 10)
 	if (damageable.health > 0):
-		print('on damageable hit')
-		self.velocity = knockback_speed * knockback_direction
-		print('override hit state')
+		self.velocity = Vector2(knockback_impulse.x * knockback_direction.x, knockback_impulse.y)
+		#self.velocity = knockback_speed * knockback_direction
 		state_machine.on_state_interrupt_state(hit_state)
 	else:
 		state_machine.on_state_interrupt_state(dead_state)

@@ -44,6 +44,7 @@ signal health_changed(new_hp, max_hp)
 
 func _ready() -> void:
 	Global.game_controller.player = self
+	Global.game_controller.player_camera = camera
 	
 	damageable.connect("on_hit", on_damageable_hit)
 	damageable.connect("on_death", on_damageable_death)
@@ -58,8 +59,6 @@ func _ready() -> void:
 		animation_component.animation_tree = char_animation_tree
 	if action_animation_component:
 		action_animation_component.animation_tree = action_animation_tree
-	if jump_component:
-			jump_component.jump_velocity = -700
 	
 func _physics_process(delta) -> void:
 	if state_machine.current_state != null:

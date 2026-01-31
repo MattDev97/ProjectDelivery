@@ -1,17 +1,19 @@
-[gd_resource type="Resource" script_class="StatSheet" load_steps=6 format=3 uid="uid://bo3qju8onwle"]
+[gd_resource type="Resource" script_class="StatSheet" load_steps=7 format=3 uid="uid://bo3qju8onwle"]
 
 [ext_resource type="Resource" uid="uid://bypx7n4qkb3wx" path="res://stats/StatDefinitions/HealthDef.tres" id="1_qql13"]
 [ext_resource type="Resource" uid="uid://clqa5socwqgff" path="res://stats/StatDefinitions/DamageDef.tres" id="2_73xgu"]
 [ext_resource type="Resource" uid="uid://ctidchmjje5pa" path="res://stats/StatDefinitions/MovementSpeedDef.tres" id="3_ruoab"]
 [ext_resource type="Resource" uid="uid://bv8d0pye6p8r6" path="res://stats/StatDefinitions/AttackSpeedDef.tres" id="4_ek87t"]
 [ext_resource type="Script" uid="uid://chmbfbaqvkmc6" path="res://stats/StatSheet.gd" id="5_8xsof"]
+[ext_resource type="Resource" uid="uid://1q5wj2acv3f5" path="res://stats/StatDefinitions/JumpVelocityDef.tres" id="5_73xgu"]
 
 [resource]
 script = ExtResource("5_8xsof")
 base_stats = {
 ExtResource("1_qql13"): 100.0,
 ExtResource("2_73xgu"): 20.0,
-ExtResource("3_ruoab"): 350.0,
-ExtResource("4_ek87t"): 10.0
+ExtResource("3_ruoab"): 200.0,
+ExtResource("4_ek87t"): 10.0,
+ExtResource("5_73xgu"): 500.0
 }
 metadata/_custom_type_script = "uid://chmbfbaqvkmc6"

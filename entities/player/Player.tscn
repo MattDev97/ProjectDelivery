@@ -517,7 +517,7 @@ tracks/3/keys = {
 tracks/4/type = "value"
 tracks/4/imported = false
 tracks/4/enabled = true
-tracks/4/path = NodePath("../Sword:monitoring")
+tracks/4/path = NodePath("../Attack Action:monitoring")
 tracks/4/interp = 1
 tracks/4/loop_wrap = true
 tracks/4/keys = {
@@ -581,7 +581,7 @@ tracks/3/keys = {
 tracks/4/type = "value"
 tracks/4/imported = false
 tracks/4/enabled = true
-tracks/4/path = NodePath("../Sword:monitoring")
+tracks/4/path = NodePath("../Attack Action:monitoring")
 tracks/4/interp = 1
 tracks/4/loop_wrap = true
 tracks/4/keys = {
@@ -1173,14 +1173,13 @@ current_state = NodePath("ActionIdle")
 script = ExtResource("36_fs2qx")
 attack_state = NodePath("../Attack")
 
-[node name="Attack" type="Node" parent="ActionStateMachine" node_paths=PackedStringArray("return_state", "attack_col", "attack_timer")]
+[node name="Attack" type="Node" parent="ActionStateMachine" node_paths=PackedStringArray("return_state", "attack_timer")]
 script = ExtResource("24_8nn5r")
 return_state = NodePath("../ActionIdle")
-attack_col = NodePath("")
 attack_timer = NodePath("Timer")
 
 [node name="Timer" type="Timer" parent="ActionStateMachine/Attack"]
-wait_time = 0.135
+wait_time = 0.2
 one_shot = true
 
 [node name="Character Animation" type="Node2D" parent="."]
@@ -1214,7 +1213,7 @@ anim_player = NodePath("../AnimationPlayer")
 [node name="Sprite2D" type="Sprite2D" parent="Attack Animation"]
 position = Vector2(0, -5)
 
-[node name="Sword" type="Area2D" parent="." node_paths=PackedStringArray("facing_shape", "attack_animation")]
+[node name="Attack Action" type="Area2D" parent="." node_paths=PackedStringArray("facing_shape", "attack_animation")]
 collision_layer = 0
 collision_mask = 4
 monitoring = false
@@ -1222,7 +1221,7 @@ script = ExtResource("26_x3qp0")
 facing_shape = NodePath("Attack Col")
 attack_animation = NodePath("../Attack Animation")
 
-[node name="Attack Col" type="CollisionShape2D" parent="Sword"]
+[node name="Attack Col" type="CollisionShape2D" parent="Attack Action"]
 position = Vector2(28, -17)
 rotation = 1.5707964
 shape = SubResource("CapsuleShape2D_ro0t8")
@@ -1291,4 +1290,4 @@ script = ExtResource("38_g3kjw")
 [connection signal="timeout" from="CharacterStateMachine/Hit/Timer" to="CharacterStateMachine/Hit" method="_on_timer_timeout"]
 [connection signal="timeout" from="CharacterStateMachine/Dead/Timer" to="CharacterStateMachine/Dead" method="_on_timer_timeout"]
 [connection signal="timeout" from="ActionStateMachine/Attack/Timer" to="ActionStateMachine/Attack" method="_on_timer_timeout"]
-[connection signal="body_entered" from="Sword" to="Sword" method="_on_body_entered"]
+[connection signal="body_entered" from="Attack Action" to="Attack Action" method="_on_body_entered"]

@@ -566,7 +566,7 @@ _data = {
 }
 
 [node name="Zombie" type="CharacterBody2D" node_paths=PackedStringArray("attack_controller", "hit_state", "dead_state", "attack_state", "vision", "damageable", "animation_component", "movement_component", "attack_range")]
-collision_layer = 6
+collision_layer = 4
 script = ExtResource("1_tv4ep")
 attack_controller = NodePath("AttackController")
 hit_state = NodePath("CharacterStateMachine/Hit")

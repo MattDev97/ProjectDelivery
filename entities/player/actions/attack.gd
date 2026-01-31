@@ -5,7 +5,7 @@ extends Area2D
 
 func _physics_process(_delta: float) -> void:
 	var parent = get_parent()
-	if parent is CharacterBody2D and parent.velocity.x != 0:
+	if parent is CharacterBody2D and parent.velocity.x != 0 and parent.input_component.input_horizontal != 0:
 		_on_player_facing_direction_changed(parent.velocity.x > 0)
 
 func _on_body_entered(body: Node2D) -> void:

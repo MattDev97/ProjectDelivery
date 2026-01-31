@@ -1730,6 +1730,7 @@ position = Vector2(1536, 264)
 collision_mask = 3
 
 [node name="Player" parent="." instance=ExtResource("6_7s355")]
+top_level = true
 position = Vector2(245, 219)
 
 [node name="Zombie" parent="." instance=ExtResource("14_rj4us")]

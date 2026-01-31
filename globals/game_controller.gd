@@ -5,6 +5,7 @@ class_name GameController extends Node
 @export var background_manager: BackgroundManager
 
 @export var player: Player
+@export var player_camera: Camera2D
 
 var current_2d_scene
 var current_gui_scene

@@ -3,7 +3,7 @@ class_name GravityComponent
 extends Node
 
 @export_subgroup("Settings")
-@export var gravity: float = 2500.0
+@export var gravity: float = 2000.0
 
 # The component finds its own parent!
 @onready var body: CharacterBody2D = get_parent()

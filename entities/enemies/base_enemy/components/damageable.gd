@@ -15,7 +15,7 @@ func hit(damage: int, knockback_direction: Vector2):
 	health -= damage
 	emit_signal("on_hit", get_parent(), damage, knockback_direction)
 	
-	Global.game_controller.hit_pause(0.05)
+	Global.game_controller.hit_pause(0.07)
 	if (health <= 0):
 		isDying = true
 		emit_signal("on_death", get_parent())

@@ -27,7 +27,7 @@ func shake(time:float, strength: float):
 	elapsed_time = 0.0
 	
 	
-	var offset_position := Vector2(0,0)
+	var offset_position := Vector2(0,-18)
 	var offset_rotation = 0
 	
 	#If shakes overlap, any subsequent call only effects the shake by changing

@@ -1,0 +1,10 @@
+[gd_resource type="Resource" script_class="StatDefinition" load_steps=2 format=3 uid="uid://1q5wj2acv3f5"]
+
+[ext_resource type="Script" uid="uid://d3s5ydx42laft" path="res://stats/StatDefinition.gd" id="1_hbydc"]
+
+[resource]
+script = ExtResource("1_hbydc")
+id = "jump_velocity"
+display_name = "Jump Velocity"
+abbreviation = "JMP"
+metadata/_custom_type_script = "uid://d3s5ydx42laft"
