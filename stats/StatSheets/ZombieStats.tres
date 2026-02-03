@@ -9,7 +9,7 @@
 [resource]
 script = ExtResource("5_dojmr")
 base_stats = {
-ExtResource("1_t617k"): 40.0,
+ExtResource("1_t617k"): 80.0,
 ExtResource("2_yp4mi"): 20.0,
 ExtResource("3_slct5"): 50.0,
 ExtResource("4_ivdvs"): 10.0
