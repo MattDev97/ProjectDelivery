@@ -1,55 +1,48 @@
 class_name ShakeableCamera extends Camera2D
 
-
 var shaking := false
 var remaining_time : float = 0
 var elapsed_time : float = 0
 
-#strength controlls the overall magnitude of the shake
-#while smoothness controlls how smooth motion is, kind of "anti-strength"
-
-var smoothness :float = 0.5 #0-1, higher values smooth out the shake motion more so that it's less jarring
+var smoothness :float = 0.5 
 var current_strength :float = 0
 
-func rand_offset_from_strength()-> Vector2:
+func rand_offset_from_strength() -> Vector2:
 	var vec = Vector2()
 	vec.x = randf_range(-current_strength, current_strength)
 	vec.y = randf_range(-current_strength, current_strength)
 	return vec
 
-func shake(time:float, strength: float):
-	
-	#If the camera is already shaking, then
-		#reset the elapsed time and remaining time of the shake
-		#boost the strength of the shake, so that shakes have an additive effect
+func shake(time: float, strength: float):
 	remaining_time = time
 	current_strength += strength 
 	elapsed_time = 0.0
 	
+	# We interpret this vector as "how far we are from the center", 
+	# so it should start at Zero.
+	var shake_displacement := Vector2.ZERO 
 	
-	var offset_position := Vector2(0,-18)
-	var offset_rotation = 0
-	
-	#If shakes overlap, any subsequent call only effects the shake by changing
-	#the variables. The first call handles the actual shaking.
 	if not shaking:
 		shaking = true
+		
+		# 1. Capture the original offset (e.g. your Y offset) 
+		# before we start moving things around.
+		var initial_offset = offset
+		
 		while elapsed_time < remaining_time:
 			
-			#gradually decay the strength
 			current_strength = lerpf(current_strength, 0, elapsed_time/remaining_time)
 			
-			#smooth motion in the offset between random values
-			offset_position = offset_position.lerp(rand_offset_from_strength(), 1-smoothness)
+			# 2. Calculate the shake displacement separately from the actual offset
+			shake_displacement = shake_displacement.lerp(rand_offset_from_strength(), 1-smoothness)
+			shake_displacement = shake_displacement.lerp(Vector2.ZERO, elapsed_time/remaining_time)
 			
-			#lerp back towards zero offset over time
-			offset_position = offset_position.lerp(Vector2(0,0), elapsed_time/remaining_time)
-			offset = offset_position
-			
-			#if you want to add rotation to the shake, uncomment the line below 
-			#rotation = lerpf(randf_range(deg_to_rad(0),deg_to_rad(0)),0, elapsed_time/remaining_time)
+			# 3. Apply the shake displacement ON TOP of the initial offset
+			offset = initial_offset + shake_displacement
 			
 			elapsed_time += get_process_delta_time()
 			await get_tree().process_frame
-			
+		
+		# 4. When done, snap back to the exact initial offset
+		offset = initial_offset
 		shaking = false

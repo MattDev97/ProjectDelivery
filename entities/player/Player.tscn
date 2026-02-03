@@ -462,7 +462,7 @@ states/Start/position = Vector2(229.5, 153)
 states/move/node = SubResource("AnimationNodeBlendSpace1D_i3i7k")
 states/move/position = Vector2(462.125, 152.25)
 transitions = ["Start", "move", SubResource("AnimationNodeStateMachineTransition_m3vrt"), "move", "Jump", SubResource("AnimationNodeStateMachineTransition_5qbdv"), "Jump", "Fall", SubResource("AnimationNodeStateMachineTransition_wbbrj"), "Jump", "Double Jump", SubResource("AnimationNodeStateMachineTransition_m1mwl"), "Fall", "move", SubResource("AnimationNodeStateMachineTransition_ck0hy"), "Double Jump", "Fall", SubResource("AnimationNodeStateMachineTransition_fs2qx"), "move", "Hit", SubResource("AnimationNodeStateMachineTransition_21jlj"), "Hit", "move", SubResource("AnimationNodeStateMachineTransition_5v685"), "move", "Fall", SubResource("AnimationNodeStateMachineTransition_2fpie"), "move", "Dead", SubResource("AnimationNodeStateMachineTransition_hebnp")]
-graph_offset = Vector2(76, -176)
+graph_offset = Vector2(-8, -98)
 
 [sub_resource type="Animation" id="Animation_21jlj"]
 length = 0.001
@@ -1284,6 +1284,7 @@ script = ExtResource("16_8qjgm")
 state_machine = NodePath("../CharacterStateMachine")
 
 [node name="Camera2D" type="Camera2D" parent="."]
+offset = Vector2(0, -20)
 zoom = Vector2(2, 2)
 position_smoothing_enabled = true
 script = ExtResource("38_g3kjw")
