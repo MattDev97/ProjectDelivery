@@ -409,6 +409,121 @@ theme_override_font_sizes/font_size = 20
 theme_override_styles/normal = SubResource("StyleBoxFlat_w2r0d")
 text = "BACK"
 
+[node name="LevelSelect" type="VBoxContainer" parent="Panel"]
+visible = false
+layout_mode = 2
+size_flags_vertical = 0
+
+[node name="Level" type="Label" parent="Panel/LevelSelect"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.18039216, 0.13333334, 0.18431373, 1)
+theme_override_colors/font_shadow_color = Color(0.78039217, 0.8627451, 0.8156863, 1)
+theme_override_constants/shadow_outline_size = 2
+theme_override_fonts/font = ExtResource("3_joh67")
+theme_override_font_sizes/font_size = 21
+theme_override_styles/focus = SubResource("StyleBoxFlat_qrfef")
+text = "Level"
+horizontal_alignment = 1
+autowrap_mode = 2
+uppercase = true
+
+[node name="Select" type="Label" parent="Panel/LevelSelect"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.18039216, 0.13333334, 0.18431373, 1)
+theme_override_colors/font_shadow_color = Color(0.78039217, 0.8627451, 0.8156863, 1)
+theme_override_constants/shadow_outline_size = 2
+theme_override_fonts/font = ExtResource("3_joh67")
+theme_override_font_sizes/font_size = 30
+theme_override_styles/focus = SubResource("StyleBoxFlat_qrfef")
+text = "Select"
+horizontal_alignment = 1
+autowrap_mode = 2
+uppercase = true
+
+[node name="HSeparator" type="HSeparator" parent="Panel/LevelSelect"]
+custom_minimum_size = Vector2(0, 15)
+layout_mode = 2
+theme_override_styles/separator = SubResource("StyleBoxEmpty_3c04x")
+
+[node name="TestLevel" type="Button" parent="Panel/LevelSelect"]
+custom_minimum_size = Vector2(125, 50)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+size_flags_stretch_ratio = 0.41
+mouse_default_cursor_shape = 2
+theme_override_colors/font_color = Color(0.18039216, 0.13333334, 0.18431373, 1)
+theme_override_fonts/font = ExtResource("4_u184e")
+theme_override_font_sizes/font_size = 20
+theme_override_styles/normal = SubResource("StyleBoxFlat_xio0d")
+
+[node name="Label" type="Label" parent="Panel/LevelSelect/TestLevel"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -38.5
+offset_top = -11.5
+offset_right = 38.5
+offset_bottom = 11.5
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_fonts/font = ExtResource("4_u184e")
+text = "Test Level"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="HSeparator2" type="HSeparator" parent="Panel/LevelSelect"]
+custom_minimum_size = Vector2(0, 5)
+layout_mode = 2
+theme_override_styles/separator = SubResource("StyleBoxEmpty_3c04x")
+
+[node name="ParkourLevel" type="Button" parent="Panel/LevelSelect"]
+custom_minimum_size = Vector2(125, 50)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+size_flags_stretch_ratio = 0.41
+mouse_default_cursor_shape = 2
+theme_override_colors/font_color = Color(0.18039216, 0.13333334, 0.18431373, 1)
+theme_override_fonts/font = ExtResource("4_u184e")
+theme_override_font_sizes/font_size = 20
+theme_override_styles/normal = SubResource("StyleBoxFlat_xio0d")
+
+[node name="Label" type="Label" parent="Panel/LevelSelect/ParkourLevel"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -38.5
+offset_top = -11.5
+offset_right = 38.5
+offset_bottom = 11.5
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_fonts/font = ExtResource("4_u184e")
+text = "Parkour Level"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="HSeparator3" type="HSeparator" parent="Panel/LevelSelect"]
+custom_minimum_size = Vector2(0, 5)
+layout_mode = 2
+theme_override_styles/separator = SubResource("StyleBoxEmpty_3c04x")
+
+[node name="Back" type="Button" parent="Panel/LevelSelect"]
+layout_mode = 2
+size_flags_horizontal = 4
+mouse_default_cursor_shape = 2
+theme_override_fonts/font = ExtResource("4_u184e")
+theme_override_font_sizes/font_size = 20
+theme_override_styles/normal = SubResource("StyleBoxFlat_w2r0d")
+text = "BACK"
+
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {
 &"": SubResource("AnimationLibrary_xio0d")
@@ -421,3 +536,7 @@ autoplay = "sway"
 [connection signal="button_up" from="Panel/CharSelect/Char Select" to="." method="_on_char_select_button_up"]
 [connection signal="button_up" from="Panel/CharSelect/Char Select" to="Panel/CharSelect/Char Select" method="_on_button_up"]
 [connection signal="button_up" from="Panel/CharSelect/Back" to="." method="_on_back_button_up"]
+[connection signal="button_up" from="Panel/LevelSelect/TestLevel" to="." method="_on_test_level_button_up"]
+[connection signal="button_up" from="Panel/LevelSelect/ParkourLevel" to="." method="_on_parkour_level_button_up"]
+[connection signal="button_up" from="Panel/LevelSelect/ParkourLevel" to="Panel/LevelSelect/ParkourLevel" method="_on_button_up"]
+[connection signal="button_up" from="Panel/LevelSelect/Back" to="." method="_on_back_button_up"]

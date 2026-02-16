@@ -574,11 +574,19 @@ dead_state = NodePath("CharacterStateMachine/Dead")
 attack_state = NodePath("CharacterStateMachine/Attack")
 vision = NodePath("Vision")
 damageable = NodePath("Damageable")
-animation_component = NodePath("animation_component")
-movement_component = NodePath("MovementComponent")
+animation_component = NodePath("Components/animation_component")
+movement_component = NodePath("Components/MovementComponent")
 attack_range = NodePath("AttackRange")
 
-[node name="MovementComponent" parent="." instance=ExtResource("2_8hb0b")]
+[node name="Components" type="Node" parent="."]
+
+[node name="gravity_component" parent="Components" instance=ExtResource("7_goqve")]
+
+[node name="MovementComponent" parent="Components" instance=ExtResource("2_8hb0b")]
+
+[node name="animation_component" parent="Components" node_paths=PackedStringArray("animation_tree", "sprite") instance=ExtResource("8_g8h2e")]
+animation_tree = NodePath("../../Animation/AnimationTree")
+sprite = NodePath("../../Animation/Sprite2D")
 
 [node name="StatController" type="Node" parent="."]
 script = ExtResource("2_s1qc4")
@@ -588,7 +596,7 @@ starting_stats = ExtResource("3_8hb0b")
 collision_mask = 3
 monitoring = false
 script = ExtResource("16_1rglb")
-animation_component = NodePath("../animation_component")
+animation_component = NodePath("../Components/animation_component")
 
 [node name="AttackCol" type="CollisionShape2D" parent="AttackController"]
 position = Vector2(16, -24)
@@ -608,17 +616,11 @@ autoplay = "idle"
 [node name="Damageable" type="Node" parent="."]
 script = ExtResource("6_14mb5")
 
-[node name="animation_component" parent="." node_paths=PackedStringArray("animation_tree", "sprite") instance=ExtResource("8_g8h2e")]
-animation_tree = NodePath("../Animation/AnimationTree")
-sprite = NodePath("../Animation/Sprite2D")
-
-[node name="gravity_component" parent="." instance=ExtResource("7_goqve")]
-
 [node name="CharacterStateMachine" type="Node" parent="." node_paths=PackedStringArray("character", "current_state", "movement_component")]
 script = ExtResource("8_n1r24")
 character = NodePath("..")
 current_state = NodePath("Idle")
-movement_component = NodePath("../MovementComponent")
+movement_component = NodePath("../Components/MovementComponent")
 metadata/_custom_type_script = "uid://fiaq6np0wfbp"
 
 [node name="Dead" type="Node" parent="CharacterStateMachine"]
