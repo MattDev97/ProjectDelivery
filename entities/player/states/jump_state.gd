@@ -2,9 +2,17 @@
 extends State
 class_name JumpState
 
+@export var wall_jump_input_lock_duration = 0.2
+
 func on_enter():
-	# Actually perform the jump force immediately
-	jump_component.jump(character)
+	# Check if we are coming from a wall slide
+	if prev_state.name == "WallSlide":
+		character._perform_wall_jump()
+		character.input_locked = true
+		get_tree().create_timer(wall_jump_input_lock_duration).connect("timeout", func(): character.input_locked = false)
+	else:
+		# Actually perform the jump force immediately
+		jump_component.jump(character)
 
 func state_process(delta):
 	# Air control

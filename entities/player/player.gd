@@ -36,7 +36,12 @@ const FRICTION = 1000.0 # Ground friction when not moving
 @export var damageable: Damageable
 @export var knockback_impulse: Vector2 = Vector2(100, -200)
 
-@export var camera : Camera2D
+@export var camera: Camera2D
+
+@export_group("Wall Jump")
+@export var wall_jump_velocity = Vector2(400.0, -400.0)
+var wall_raycast: RayCast2D
+var input_locked = false
 
 signal health_changed(new_hp, max_hp)
 
@@ -57,18 +62,28 @@ func _ready() -> void:
 		animation_component.animation_tree = char_animation_tree
 	if action_animation_component:
 		action_animation_component.animation_tree = action_animation_tree
+
+	# Wall Raycast
+	wall_raycast = RayCast2D.new()
+	add_child(wall_raycast)
+	wall_raycast.target_position = Vector2(30, 0)
+	wall_raycast.enabled = true
 	
 func _physics_process(delta) -> void:
 	if state_machine.current_state != null:
 		var can_move = state_machine.current_state.can_move && action_state_machine.current_state.can_move
 			
-		if can_move:
+		if can_move and not input_locked:
 			var direction = input_component.input_horizontal
 			movement_component.handle_horizontal_movement(self , direction)
 		elif is_on_floor():
 			# Apply friction if on floor but can't move (e.g. Knockback landing)
 			velocity.x = move_toward(velocity.x, 0, FRICTION * delta)
 		
+		# Update wall raycast direction
+		if input_component.input_horizontal != 0:
+			wall_raycast.target_position.x = 30 * input_component.input_horizontal
+			
 		if animation_component:
 			animation_component.update_animations(input_component.input_horizontal, state_machine.current_state.name)
 			
@@ -76,6 +91,11 @@ func _physics_process(delta) -> void:
 			action_animation_component.update_animations(input_component.input_horizontal, action_state_machine.current_state.name)
 
 	move_and_slide()
+
+func _perform_wall_jump():
+	var wall_normal = wall_raycast.get_collision_normal()
+	velocity.x = wall_normal.x * wall_jump_velocity.x
+	velocity.y = wall_jump_velocity.y
 	
 func equip_item(item: ItemData):
 	inventory_component.add_item(item)

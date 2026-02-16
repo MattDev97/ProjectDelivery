@@ -29,4 +29,6 @@ func state_process(delta):
 	if character.input_component.get_jump_input() and jump_component.is_coyote_timer_running():
 		character.set_next_state("Jump")
 		
-	
+	# Transition: Wall Slide
+	if character.wall_raycast.is_colliding() and not character.is_on_floor() and character.input_component.input_horizontal != 0:
+		character.set_next_state("WallSlide")

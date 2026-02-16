@@ -1,4 +1,4 @@
-[gd_scene load_steps=142 format=3 uid="uid://rv0j4ek8e0bq"]
+[gd_scene load_steps=143 format=3 uid="uid://rv0j4ek8e0bq"]
 
 [ext_resource type="Texture2D" uid="uid://cuc0hgso5b7he" path="res://assets/sprites/player/Bob/male_hero_template-idle.png" id="1_3c3w1"]
 [ext_resource type="Script" uid="uid://b6varohc3b4y8" path="res://entities/enemies/base_enemy/components/damageable.gd" id="1_minwf"]
@@ -17,6 +17,7 @@
 [ext_resource type="PackedScene" uid="uid://c3mdjjastif0n" path="res://entities/player/components/input_component.tscn" id="9_7oing"]
 [ext_resource type="Texture2D" uid="uid://cblv47eqsfh4s" path="res://assets/sprites/player/1 Woodcutter/Woodcutter_death_fixed.png" id="9_wbbrj"]
 [ext_resource type="PackedScene" uid="uid://44d4hx5abgvi" path="res://entities/player/components/animation_component.tscn" id="10_7oing"]
+[ext_resource type="Script" uid="uid://7evou4t88fgw" path="res://entities/player/states/wall_slide_state.gd" id="11_f2vir"]
 [ext_resource type="PackedScene" uid="uid://cybaqaepqsu8" path="res://entities/player/components/advanced_jump_component.tscn" id="12_180ig"]
 [ext_resource type="Script" uid="uid://fiaq6np0wfbp" path="res://entities/player/states/character_state_machine.gd" id="13_20koh"]
 [ext_resource type="Script" uid="uid://chhd6vawmamo8" path="res://entities/player/states/state_debug_label.gd" id="16_8qjgm"]
@@ -1118,6 +1119,7 @@ jump_component = NodePath("AdvancedJumpComponent")
 inventory_component = NodePath("InventoryComponent")
 damageable = NodePath("Damageable")
 camera = NodePath("Camera2D")
+wall_jump_velocity = Vector2(200, -400)
 
 [node name="Player Hurtbox" type="CollisionShape2D" parent="."]
 position = Vector2(0, -15)
@@ -1163,6 +1165,11 @@ can_jump = false
 metadata/_custom_type_script = "uid://bhnp7kyvrhnrc"
 
 [node name="Timer" type="Timer" parent="CharacterStateMachine/Dead"]
+
+[node name="WallSlide" type="Node" parent="CharacterStateMachine"]
+script = ExtResource("11_f2vir")
+wall_slide_speed = 1.0
+metadata/_custom_type_script = "uid://bhnp7kyvrhnrc"
 
 [node name="ActionStateMachine" type="Node" parent="." node_paths=PackedStringArray("character", "current_state")]
 script = ExtResource("35_ck0hy")
@@ -1274,7 +1281,6 @@ frame = 6
 frame_progress = 1.0
 
 [node name="StateDebugLabel" type="Label" parent="." node_paths=PackedStringArray("state_machine")]
-visible = false
 offset_left = -46.0
 offset_top = -58.0
 offset_right = 63.0

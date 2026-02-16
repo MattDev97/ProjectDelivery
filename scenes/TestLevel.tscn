@@ -1,4 +1,4 @@
-[gd_scene load_steps=20 format=4 uid="uid://bo41dx2arq7tf"]
+[gd_scene load_steps=17 format=4 uid="uid://bo41dx2arq7tf"]
 
 [ext_resource type="Texture2D" uid="uid://dkq1kwb8u2gpv" path="res://assets/craftpix_tilesets/green_hill_zone/3 Objects/Benches/1.png" id="1_rj4us"]
 [ext_resource type="Texture2D" uid="uid://dx2q57brt6knc" path="res://assets/sprites/tilesets/!Spritesheet Blocks Grey.png" id="1_xlsm3"]
@@ -14,9 +14,6 @@
 [ext_resource type="Texture2D" uid="uid://b2c5g675l570e" path="res://assets/craftpix_tilesets/green_hill_zone/3 Objects/Stones/3.png" id="13_cprs5"]
 [ext_resource type="Texture2D" uid="uid://sifpji7m5gmk" path="res://assets/craftpix_tilesets/green_hill_zone/3 Objects/Benches/3.png" id="14_1u1aq"]
 [ext_resource type="PackedScene" uid="uid://bs7vht6h1752g" path="res://entities/enemies/zombie/zombie.tscn" id="14_rj4us"]
-[ext_resource type="PackedScene" uid="uid://cgymdnf00enhn" path="res://items/base_item.tscn" id="15_uo51d"]
-[ext_resource type="Resource" uid="uid://dn2s1bgu10pgy" path="res://resources/item/battery.tres" id="16_mdcl8"]
-[ext_resource type="Resource" uid="uid://wet4n2gepqs6" path="res://resources/item/increase_dmg.tres" id="17_iu18o"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_33f5c"]
 texture = ExtResource("1_xlsm3")
@@ -1774,11 +1771,3 @@ position = Vector2(832, 384)
 
 [node name="Zombie2" parent="." instance=ExtResource("14_rj4us")]
 position = Vector2(760, 384)
-
-[node name="MvmtSpeed Item" parent="." instance=ExtResource("15_uo51d")]
-position = Vector2(632, 80)
-item_data = ExtResource("16_mdcl8")
-
-[node name="Dmg Item" parent="." instance=ExtResource("15_uo51d")]
-position = Vector2(384, 80)
-item_data = ExtResource("17_iu18o")
