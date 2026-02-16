@@ -6,7 +6,7 @@ class_name JumpState
 
 func on_enter():
 	# Check if we are coming from a wall slide
-	if prev_state.name == "WallSlide":
+	if prev_state.name == "WallSlide" or jump_component.is_wall_coyote_timer_running():
 		character._perform_wall_jump()
 		character.input_locked = true
 		get_tree().create_timer(wall_jump_input_lock_duration).connect("timeout", func(): character.input_locked = false)

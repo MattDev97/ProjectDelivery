@@ -5,7 +5,11 @@ class_name WallSlideState
 @export var wall_slide_speed = 150.0
 
 func on_enter():
-	pass 
+	pass
+
+func on_exit():
+	if not character.is_on_floor():
+		jump_component.start_wall_coyote_timer()
 
 func state_process(delta):
 	# Apply wall slide gravity
@@ -19,7 +23,7 @@ func state_process(delta):
 	if character.input_component.get_jump_input():
 		character.set_next_state("Jump")
 	
-	var char_wall_slide_raycast : RayCast2D = character.get_wall_raycast_colliding()
+	var char_wall_slide_raycast: RayCast2D = character.get_wall_raycast_colliding()
 	
 	# Transition: if player stops holding towards wall
 	if character.input_component.input_horizontal == 0:

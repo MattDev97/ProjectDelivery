@@ -10,7 +10,6 @@ func on_enter():
 		jump_component.start_coyote_timer(character)
 
 func state_process(delta):
-	 
 	var direction = character.input_component.input_horizontal
 	# Buffer the jump (remember input if we press it right before landing)
 	jump_component.handle_jump_buffer(character, character.input_component.get_jump_input())
@@ -26,10 +25,14 @@ func state_process(delta):
 	
 	# Transition: Coyote Jump
 	# If we press jump AND the coyote timer is still valid
-	if character.input_component.get_jump_input() and jump_component.is_coyote_timer_running():
+	if character.input_component.get_jump_input() and jump_component.is_coyote_timer_running() and prev_state.name != 'WallSlide':
+		character.set_next_state("Jump")
+	
+	# Transition: Wall Jump (Coyote)
+	if character.input_component.get_jump_input() and jump_component.is_wall_coyote_timer_running():
 		character.set_next_state("Jump")
 	
 	# Transition: Wall Slide
-	if character.get_wall_raycast_colliding() != null and not character.is_on_floor():
+	var wall_raycast = character.get_wall_raycast_colliding()
+	if wall_raycast != null and not character.is_on_floor() and sign(direction) == sign(wall_raycast.target_position.x):
 		character.set_next_state("WallSlide")
-	

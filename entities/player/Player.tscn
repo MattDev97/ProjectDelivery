@@ -1,4 +1,4 @@
-[gd_scene load_steps=144 format=3 uid="uid://rv0j4ek8e0bq"]
+[gd_scene load_steps=148 format=3 uid="uid://rv0j4ek8e0bq"]
 
 [ext_resource type="Texture2D" uid="uid://cuc0hgso5b7he" path="res://assets/sprites/player/Bob/male_hero_template-idle.png" id="1_3c3w1"]
 [ext_resource type="Script" uid="uid://b6varohc3b4y8" path="res://entities/enemies/base_enemy/components/damageable.gd" id="1_minwf"]
@@ -23,6 +23,7 @@
 [ext_resource type="Script" uid="uid://chhd6vawmamo8" path="res://entities/player/states/state_debug_label.gd" id="16_8qjgm"]
 [ext_resource type="Script" uid="uid://cddsa4jqrpo6b" path="res://entities/player/states/idle_state.gd" id="17_kswpp"]
 [ext_resource type="Script" uid="uid://b4n34k5okmtue" path="res://entities/player/states/run_state.gd" id="18_2xrq6"]
+[ext_resource type="Script" uid="uid://nsslkvn047f3" path="res://entities/player/states/dash_state.gd" id="19_21jlj"]
 [ext_resource type="Script" uid="uid://doqw2wb1ceh2l" path="res://entities/player/states/jump_state.gd" id="19_pi3ps"]
 [ext_resource type="Texture2D" uid="uid://d36lsxi5njxo1" path="res://assets/vfx/Slash 1/color5/sprite-sheet.png" id="20_fs2qx"]
 [ext_resource type="Script" uid="uid://cj7ptn52jmw5q" path="res://entities/player/states/fall_state.gd" id="20_kswpp"]
@@ -55,7 +56,7 @@ tracks/0/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 1,
-"values": [null]
+"values": [ExtResource("24_unwxu")]
 }
 tracks/1/type = "value"
 tracks/1/imported = false
@@ -67,7 +68,7 @@ tracks/1/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 1,
-"values": [1]
+"values": [6]
 }
 tracks/2/type = "value"
 tracks/2/imported = false
@@ -127,6 +128,46 @@ tracks/2/keys = {
 "transitions": PackedFloat32Array(1),
 "update": 1,
 "values": [0]
+}
+
+[sub_resource type="Animation" id="Animation_5v685"]
+resource_name = "dash"
+step = 0.33333334
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [ExtResource("24_unwxu")]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Sprite2D:hframes")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [6]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Sprite2D:frame")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.16666667, 0.33333334),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [0, 1, 2]
 }
 
 [sub_resource type="Animation" id="Animation_fs2qx"]
@@ -377,45 +418,6 @@ tracks/2/keys = {
 "values": [0, 1, 2, 3, 4, 5]
 }
 
-[sub_resource type="Animation" id="Animation_5v685"]
-resource_name = "dash"
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Sprite2D:texture")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [ExtResource("24_unwxu")]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("Sprite2D:hframes")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [6]
-}
-tracks/2/type = "value"
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/path = NodePath("Sprite2D:frame")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/keys = {
-"times": PackedFloat32Array(),
-"transitions": PackedFloat32Array(),
-"update": 1,
-"values": []
-}
-
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_i3i7k"]
 _data = {
 &"RESET": SubResource("Animation_unwxu"),
@@ -430,6 +432,9 @@ _data = {
 &"jump": SubResource("Animation_m3vrt"),
 &"run": SubResource("Animation_2fpie")
 }
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_21jlj"]
+animation = &"dash"
 
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_g3kjw"]
 animation = &"dead"
@@ -487,7 +492,13 @@ advance_mode = 2
 
 [sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_hebnp"]
 
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_ejb73"]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_4tpsr"]
+
 [sub_resource type="AnimationNodeStateMachine" id="AnimationNodeStateMachine_m3vrt"]
+states/Dash/node = SubResource("AnimationNodeAnimation_21jlj")
+states/Dash/position = Vector2(695, 196)
 states/Dead/node = SubResource("AnimationNodeAnimation_g3kjw")
 states/Dead/position = Vector2(346.5, 299.5)
 "states/Double Jump/node" = SubResource("AnimationNodeAnimation_i3i7k")
@@ -502,8 +513,8 @@ states/Jump/position = Vector2(462.6875, 0)
 states/Start/position = Vector2(229.5, 153)
 states/move/node = SubResource("AnimationNodeBlendSpace1D_i3i7k")
 states/move/position = Vector2(462.125, 152.25)
-transitions = ["Start", "move", SubResource("AnimationNodeStateMachineTransition_m3vrt"), "move", "Jump", SubResource("AnimationNodeStateMachineTransition_5qbdv"), "Jump", "Fall", SubResource("AnimationNodeStateMachineTransition_wbbrj"), "Jump", "Double Jump", SubResource("AnimationNodeStateMachineTransition_m1mwl"), "Fall", "move", SubResource("AnimationNodeStateMachineTransition_ck0hy"), "Double Jump", "Fall", SubResource("AnimationNodeStateMachineTransition_fs2qx"), "move", "Hit", SubResource("AnimationNodeStateMachineTransition_21jlj"), "Hit", "move", SubResource("AnimationNodeStateMachineTransition_5v685"), "move", "Fall", SubResource("AnimationNodeStateMachineTransition_2fpie"), "move", "Dead", SubResource("AnimationNodeStateMachineTransition_hebnp")]
-graph_offset = Vector2(-8, -98)
+transitions = ["Start", "move", SubResource("AnimationNodeStateMachineTransition_m3vrt"), "move", "Jump", SubResource("AnimationNodeStateMachineTransition_5qbdv"), "Jump", "Fall", SubResource("AnimationNodeStateMachineTransition_wbbrj"), "Jump", "Double Jump", SubResource("AnimationNodeStateMachineTransition_m1mwl"), "Fall", "move", SubResource("AnimationNodeStateMachineTransition_ck0hy"), "Double Jump", "Fall", SubResource("AnimationNodeStateMachineTransition_fs2qx"), "move", "Hit", SubResource("AnimationNodeStateMachineTransition_21jlj"), "Hit", "move", SubResource("AnimationNodeStateMachineTransition_5v685"), "move", "Fall", SubResource("AnimationNodeStateMachineTransition_2fpie"), "move", "Dead", SubResource("AnimationNodeStateMachineTransition_hebnp"), "move", "Dash", SubResource("AnimationNodeStateMachineTransition_ejb73"), "Dash", "move", SubResource("AnimationNodeStateMachineTransition_4tpsr")]
+graph_offset = Vector2(-26, 40)
 
 [sub_resource type="Animation" id="Animation_21jlj"]
 length = 0.001
@@ -1235,6 +1246,14 @@ script = ExtResource("11_f2vir")
 wall_slide_speed = 1.0
 metadata/_custom_type_script = "uid://bhnp7kyvrhnrc"
 
+[node name="Dash" type="Node" parent="CharacterStateMachine"]
+script = ExtResource("19_21jlj")
+can_move = false
+metadata/_custom_type_script = "uid://bhnp7kyvrhnrc"
+
+[node name="DashTimer" type="Timer" parent="CharacterStateMachine/Dash"]
+wait_time = 0.10200000000000001
+
 [node name="ActionStateMachine" type="Node" parent="." node_paths=PackedStringArray("character", "current_state")]
 script = ExtResource("35_ck0hy")
 character = NodePath("..")
@@ -1268,6 +1287,8 @@ parameters/move/blend_position = 0.052227975301642
 
 [node name="Sprite2D" type="Sprite2D" parent="Character Animation"]
 position = Vector2(0, -24)
+texture = ExtResource("24_unwxu")
+hframes = 6
 
 [node name="Attack Animation" type="Node2D" parent="."]
 position = Vector2(13, -15)
@@ -1321,6 +1342,7 @@ frame = 6
 frame_progress = 1.0
 
 [node name="StateDebugLabel" type="Label" parent="." node_paths=PackedStringArray("state_machine")]
+visible = false
 offset_left = -46.0
 offset_top = -58.0
 offset_right = 63.0
@@ -1336,5 +1358,6 @@ script = ExtResource("38_g3kjw")
 
 [connection signal="timeout" from="CharacterStateMachine/Hit/Timer" to="CharacterStateMachine/Hit" method="_on_timer_timeout"]
 [connection signal="timeout" from="CharacterStateMachine/Dead/Timer" to="CharacterStateMachine/Dead" method="_on_timer_timeout"]
+[connection signal="timeout" from="CharacterStateMachine/Dash/DashTimer" to="CharacterStateMachine/Dash" method="_on_dash_timer_timeout"]
 [connection signal="timeout" from="ActionStateMachine/Attack/Timer" to="ActionStateMachine/Attack" method="_on_timer_timeout"]
 [connection signal="body_entered" from="Attack Action" to="Attack Action" method="_on_body_entered"]

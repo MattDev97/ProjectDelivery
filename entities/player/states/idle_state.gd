@@ -20,8 +20,6 @@ func state_process(delta):
 	# 2. Transition to Jump
 	if character.input_component.get_jump_input():
 		character.set_next_state("Jump")
-		
-	
 #
 #func state_input(event):
 	## ADD THIS: Attack Trigger

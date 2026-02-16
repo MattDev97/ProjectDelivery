@@ -15,6 +15,9 @@ func state_process(delta):
 	# 2. Transition to Jump
 	if character.input_component.get_jump_input():
 		character.set_next_state("Jump")
+		
+	if character.input_component.get_dash_input():
+		character.set_next_state("Dash")
 	
 	if !character.is_on_floor() && character.velocity.y > 0:
 		character.set_next_state("Fall")

@@ -35,6 +35,7 @@ const FRICTION = 1000.0 # Ground friction when not moving
 var wall_raycast_right: RayCast2D
 var wall_raycast_left: RayCast2D
 var input_locked = false
+var last_wall_normal = Vector2.ZERO
 
 signal health_changed(new_hp, max_hp)
 
@@ -82,12 +83,24 @@ func _physics_process(delta) -> void:
 		if action_animation_component:
 			action_animation_component.update_animations(input_component.input_horizontal, action_state_machine.current_state.name)
 
+	if get_wall_raycast_colliding():
+		last_wall_normal = get_wall_raycast_colliding().get_collision_normal()
+
 	move_and_slide()
 
 func _perform_wall_jump():
-	var wall_normal = wall_raycast_left.get_collision_normal() if wall_raycast_left.is_colliding() else wall_raycast_right.get_collision_normal()
-	velocity.x = wall_normal.x * wall_jump_velocity.x
-	velocity.y = wall_jump_velocity.y
+	var wall_normal = Vector2.ZERO
+	
+	if wall_raycast_left.is_colliding():
+		wall_normal = wall_raycast_left.get_collision_normal()
+	elif wall_raycast_right.is_colliding():
+		wall_normal = wall_raycast_right.get_collision_normal()
+	else:
+		wall_normal = last_wall_normal
+		
+	if wall_normal != Vector2.ZERO:
+		velocity.x = wall_normal.x * wall_jump_velocity.x
+		velocity.y = wall_jump_velocity.y
 	
 func get_wall_raycast_colliding():
 	return wall_raycast_left if wall_raycast_left.is_colliding() else (wall_raycast_right if wall_raycast_right.is_colliding() else null)
