@@ -2,7 +2,7 @@
 extends State
 class_name JumpState
 
-@export var wall_jump_input_lock_duration = 0.2
+@export var wall_jump_input_lock_duration = 0.1
 
 func on_enter():
 	# Check if we are coming from a wall slide

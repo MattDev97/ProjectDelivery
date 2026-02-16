@@ -8,7 +8,7 @@ extends Node
 @export var air_decel_speed: float = 45.0
 
 func handle_horizontal_movement(body: CharacterBody2D, direction: float) -> void:
-	var player_speed = get_parent().stat_controller.get_value("movement_speed")
+	var player_speed = body.stat_controller.get_value("movement_speed")
 	var velocity_change_speed: float = 0.0
 	if body.is_on_floor():
 		velocity_change_speed = ground_accel_speed if direction != 0 else ground_decel_speed

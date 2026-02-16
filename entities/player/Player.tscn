@@ -1106,20 +1106,22 @@ animations = [{
 "speed": 12.0
 }]
 
-[node name="Player" type="CharacterBody2D" node_paths=PackedStringArray("animated_sprite_2d", "gravity_component", "input_component", "movement_component", "animation_component", "action_animation_component", "jump_component", "inventory_component", "damageable", "camera")]
+[node name="Player" type="CharacterBody2D" node_paths=PackedStringArray("gravity_component", "input_component", "movement_component", "animation_component", "action_animation_component", "jump_component", "inventory_component", "damageable", "camera")]
 collision_layer = 2
 script = ExtResource("1_wnvi2")
-animated_sprite_2d = NodePath("Woodcutter")
-gravity_component = NodePath("GravityComponent")
-input_component = NodePath("InputComponent")
-movement_component = NodePath("MovementComponent")
-animation_component = NodePath("AnimationComponent")
-action_animation_component = NodePath("ActionAnimationComponent")
-jump_component = NodePath("AdvancedJumpComponent")
-inventory_component = NodePath("InventoryComponent")
+gravity_component = NodePath("Components/GravityComponent")
+input_component = NodePath("Components/InputComponent")
+movement_component = NodePath("Components/MovementComponent")
+animation_component = NodePath("Components/AnimationComponent")
+action_animation_component = NodePath("Components/ActionAnimationComponent")
+jump_component = NodePath("Components/AdvancedJumpComponent")
+inventory_component = NodePath("Components/InventoryComponent")
 damageable = NodePath("Damageable")
 camera = NodePath("Camera2D")
-wall_jump_velocity = Vector2(200, -400)
+
+[node name="Damageable" type="Node" parent="."]
+script = ExtResource("1_minwf")
+metadata/_custom_type_script = "uid://b6varohc3b4y8"
 
 [node name="Player Hurtbox" type="CollisionShape2D" parent="."]
 position = Vector2(0, -15)
@@ -1129,12 +1131,34 @@ shape = SubResource("CapsuleShape2D_83hs8")
 script = ExtResource("2_m3vrt")
 starting_stats = ExtResource("3_5qbdv")
 
+[node name="Components" type="Node" parent="."]
+
+[node name="InventoryComponent" type="Node" parent="Components" node_paths=PackedStringArray("stats_controller")]
+script = ExtResource("32_m3vrt")
+stats_controller = NodePath("../../StatController")
+
+[node name="GravityComponent" parent="Components" instance=ExtResource("7_npwbq")]
+
+[node name="MovementComponent" parent="Components" instance=ExtResource("8_pn6s4")]
+
+[node name="InputComponent" parent="Components" instance=ExtResource("9_7oing")]
+
+[node name="AnimationComponent" parent="Components" node_paths=PackedStringArray("animation_tree", "sprite") instance=ExtResource("10_7oing")]
+animation_tree = NodePath("../../Character Animation/AnimationTree")
+sprite = NodePath("../../Character Animation/Sprite2D")
+
+[node name="ActionAnimationComponent" parent="Components" node_paths=PackedStringArray("animation_tree", "sprite") instance=ExtResource("10_7oing")]
+animation_tree = NodePath("../../Attack Animation/AnimationTree")
+sprite = NodePath("../../Attack Animation/Sprite2D")
+
+[node name="AdvancedJumpComponent" parent="Components" instance=ExtResource("12_180ig")]
+
 [node name="CharacterStateMachine" type="Node" parent="." node_paths=PackedStringArray("character", "current_state", "movement_component", "jump_component")]
 script = ExtResource("13_20koh")
 character = NodePath("..")
 current_state = NodePath("Idle")
-movement_component = NodePath("../MovementComponent")
-jump_component = NodePath("../AdvancedJumpComponent")
+movement_component = NodePath("../Components/MovementComponent")
+jump_component = NodePath("../Components/AdvancedJumpComponent")
 
 [node name="Idle" type="Node" parent="CharacterStateMachine"]
 script = ExtResource("17_kswpp")
@@ -1235,30 +1259,6 @@ shape = SubResource("CapsuleShape2D_ro0t8")
 script = ExtResource("27_hqjia")
 facing_left_position = Vector2(-23, -18)
 facing_right_position = Vector2(23, -18)
-
-[node name="InventoryComponent" type="Node" parent="." node_paths=PackedStringArray("stats_controller")]
-script = ExtResource("32_m3vrt")
-stats_controller = NodePath("../StatController")
-
-[node name="Damageable" type="Node" parent="."]
-script = ExtResource("1_minwf")
-metadata/_custom_type_script = "uid://b6varohc3b4y8"
-
-[node name="GravityComponent" parent="." instance=ExtResource("7_npwbq")]
-
-[node name="MovementComponent" parent="." instance=ExtResource("8_pn6s4")]
-
-[node name="InputComponent" parent="." instance=ExtResource("9_7oing")]
-
-[node name="AnimationComponent" parent="." node_paths=PackedStringArray("animation_tree", "sprite") instance=ExtResource("10_7oing")]
-animation_tree = NodePath("../Character Animation/AnimationTree")
-sprite = NodePath("../Character Animation/Sprite2D")
-
-[node name="ActionAnimationComponent" parent="." node_paths=PackedStringArray("animation_tree", "sprite") instance=ExtResource("10_7oing")]
-animation_tree = NodePath("../Attack Animation/AnimationTree")
-sprite = NodePath("../Attack Animation/Sprite2D")
-
-[node name="AdvancedJumpComponent" parent="." instance=ExtResource("12_180ig")]
 
 [node name="Debug" type="Node" parent="."]
 

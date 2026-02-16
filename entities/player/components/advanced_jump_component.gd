@@ -31,8 +31,8 @@ func handle_variable_jump_height(body: CharacterBody2D, jump_released: bool) -> 
 		body.velocity.y = 0
 		
 func jump(body: CharacterBody2D) -> void:
-	var jump_velocity = get_parent().stat_controller.get_value("jump_velocity")
-	print(jump_velocity)
+	var jump_velocity = body.stat_controller.get_value("jump_velocity")
+
 	body.velocity.y = -jump_velocity
 	jump_buffer_timer.start()
 	is_jumping = true

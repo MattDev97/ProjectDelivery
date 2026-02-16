@@ -5,16 +5,8 @@ class_name Player
 enum State {
 	Idle, Run, Jump, Fall, Crouch
 }
-
-var current_state
-
-#const SPEED = 300.0
-const JUMP_VELOCITY = -700.0
-const JUMP_HORIZONTAL = 100
-const GRAVITY = 2500
 const FRICTION = 1000.0 # Ground friction when not moving
 
-@export var animated_sprite_2d: AnimatedSprite2D
 @onready var stat_controller: StatController = $StatController
 
 @export_subgroup("Nodes")
@@ -40,7 +32,8 @@ const FRICTION = 1000.0 # Ground friction when not moving
 
 @export_group("Wall Jump")
 @export var wall_jump_velocity = Vector2(400.0, -400.0)
-var wall_raycast: RayCast2D
+var wall_raycast_right: RayCast2D
+var wall_raycast_left: RayCast2D
 var input_locked = false
 
 signal health_changed(new_hp, max_hp)
@@ -64,10 +57,14 @@ func _ready() -> void:
 		action_animation_component.animation_tree = action_animation_tree
 
 	# Wall Raycast
-	wall_raycast = RayCast2D.new()
-	add_child(wall_raycast)
-	wall_raycast.target_position = Vector2(30, 0)
-	wall_raycast.enabled = true
+	wall_raycast_right = RayCast2D.new()
+	wall_raycast_left = RayCast2D.new()
+	add_child(wall_raycast_right)
+	add_child(wall_raycast_left)
+	wall_raycast_right.target_position = Vector2(30, 0)
+	wall_raycast_left.target_position = Vector2(-30, 0)
+	wall_raycast_right.enabled = true
+	wall_raycast_left.enabled = true
 	
 func _physics_process(delta) -> void:
 	if state_machine.current_state != null:
@@ -77,12 +74,7 @@ func _physics_process(delta) -> void:
 			var direction = input_component.input_horizontal
 			movement_component.handle_horizontal_movement(self , direction)
 		elif is_on_floor():
-			# Apply friction if on floor but can't move (e.g. Knockback landing)
 			velocity.x = move_toward(velocity.x, 0, FRICTION * delta)
-		
-		# Update wall raycast direction
-		if input_component.input_horizontal != 0:
-			wall_raycast.target_position.x = 30 * input_component.input_horizontal
 			
 		if animation_component:
 			animation_component.update_animations(input_component.input_horizontal, state_machine.current_state.name)
@@ -93,9 +85,12 @@ func _physics_process(delta) -> void:
 	move_and_slide()
 
 func _perform_wall_jump():
-	var wall_normal = wall_raycast.get_collision_normal()
+	var wall_normal = wall_raycast_left.get_collision_normal() if wall_raycast_left.is_colliding() else wall_raycast_right.get_collision_normal()
 	velocity.x = wall_normal.x * wall_jump_velocity.x
 	velocity.y = wall_jump_velocity.y
+	
+func get_wall_raycast_colliding():
+	return wall_raycast_left if wall_raycast_left.is_colliding() else (wall_raycast_right if wall_raycast_right.is_colliding() else null)
 	
 func equip_item(item: ItemData):
 	inventory_component.add_item(item)
