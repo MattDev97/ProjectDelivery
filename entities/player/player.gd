@@ -38,8 +38,6 @@ const FRICTION = 1000.0 # Ground friction when not moving
 
 @export var camera : Camera2D
 
-var state_dictionary: Dictionary
-
 signal health_changed(new_hp, max_hp)
 
 func _ready() -> void:

@@ -1,75 +1,190 @@
-[gd_scene load_steps=6 format=3 uid="uid://dheus2iyafdau"]
+[gd_scene load_steps=27 format=3 uid="uid://dheus2iyafdau"]
 
-[ext_resource type="Texture2D" uid="uid://c51h8rhxvrubq" path="res://assets/sprites/background/city.png" id="1_tk8dj"]
-[ext_resource type="Script" uid="uid://8g3lmm1yttnn" path="res://ui/main_menu/start_game.gd" id="5_f40uw"]
-
-[sub_resource type="FontFile" id="FontFile_6vw7e"]
-subpixel_positioning = 0
-msdf_pixel_range = 14
-msdf_size = 128
-cache/0/16/0/ascent = 0.0
-cache/0/16/0/descent = 0.0
-cache/0/16/0/underline_position = 0.0
-cache/0/16/0/underline_thickness = 0.0
-cache/0/16/0/scale = 1.0
-cache/0/17/0/ascent = 0.0
-cache/0/17/0/descent = 0.0
-cache/0/17/0/underline_position = 0.0
-cache/0/17/0/underline_thickness = 0.0
-cache/0/17/0/scale = 1.0
-cache/0/18/0/ascent = 0.0
-cache/0/18/0/descent = 0.0
-cache/0/18/0/underline_position = 0.0
-cache/0/18/0/underline_thickness = 0.0
-cache/0/18/0/scale = 1.0
-cache/0/19/0/ascent = 0.0
-cache/0/19/0/descent = 0.0
-cache/0/19/0/underline_position = 0.0
-cache/0/19/0/underline_thickness = 0.0
-cache/0/19/0/scale = 1.0
-cache/0/20/0/ascent = 0.0
-cache/0/20/0/descent = 0.0
-cache/0/20/0/underline_position = 0.0
-cache/0/20/0/underline_thickness = 0.0
-cache/0/20/0/scale = 1.0
-cache/0/21/0/ascent = 0.0
-cache/0/21/0/descent = 0.0
-cache/0/21/0/underline_position = 0.0
-cache/0/21/0/underline_thickness = 0.0
-cache/0/21/0/scale = 1.0
-cache/0/22/0/ascent = 0.0
-cache/0/22/0/descent = 0.0
-cache/0/22/0/underline_position = 0.0
-cache/0/22/0/underline_thickness = 0.0
-cache/0/22/0/scale = 1.0
-cache/0/23/0/ascent = 0.0
-cache/0/23/0/descent = 0.0
-cache/0/23/0/underline_position = 0.0
-cache/0/23/0/underline_thickness = 0.0
-cache/0/23/0/scale = 1.0
-cache/0/24/0/ascent = 0.0
-cache/0/24/0/descent = 0.0
-cache/0/24/0/underline_position = 0.0
-cache/0/24/0/underline_thickness = 0.0
-cache/0/24/0/scale = 1.0
-cache/0/40/0/ascent = 0.0
-cache/0/40/0/descent = 0.0
-cache/0/40/0/underline_position = 0.0
-cache/0/40/0/underline_thickness = 0.0
-cache/0/40/0/scale = 1.0
+[ext_resource type="Script" uid="uid://du2ikj0nvepnh" path="res://ui/main_menu/main_menu.gd" id="1_4e78x"]
+[ext_resource type="Texture2D" uid="uid://djdbq8li5jxms" path="res://assets/ui/main_menu/1.png" id="1_w2r0d"]
+[ext_resource type="Texture2D" uid="uid://beqxb43dadf4v" path="res://assets/ui/main_menu/Phone_Background.png" id="2_3c04x"]
+[ext_resource type="Texture2D" uid="uid://dar0mtdtoi00p" path="res://assets/ui/main_menu/2.png" id="2_4e78x"]
+[ext_resource type="FontFile" uid="uid://buoiamt8lqufj" path="res://assets/fonts/PixelPowerline-9xOK.ttf" id="3_joh67"]
+[ext_resource type="Texture2D" uid="uid://cdnjfm38fv710" path="res://assets/ui/main_menu/3.png" id="3_s4pem"]
+[ext_resource type="FontFile" uid="uid://djxlkd6rdmgky" path="res://assets/fonts/Pixelpurl-0vBPP.ttf" id="4_u184e"]
+[ext_resource type="Texture2D" uid="uid://bmvxrvt1b1okf" path="res://assets/ui/main_menu/4.png" id="4_xio0d"]
+[ext_resource type="Texture2D" uid="uid://b4x7mh8q00004" path="res://assets/ui/main_menu/5.png" id="5_tf5ef"]
+[ext_resource type="Texture2D" uid="uid://6s7mejgby6e" path="res://assets/sprites/player/1 Woodcutter/Woodcutter_run_fixed.png" id="11_s4pem"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_qrfef"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_3c04x"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_6mijq"]
+content_margin_left = 15.0
+content_margin_top = 15.0
+content_margin_right = 15.0
+content_margin_bottom = 15.0
+bg_color = Color(0.7019608, 0.21960784, 0.19215687, 1)
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color(0.18039216, 0.13333334, 0.18431373, 1)
+corner_radius_top_left = 3
+corner_radius_top_right = 3
+corner_radius_bottom_right = 3
+corner_radius_bottom_left = 3
+shadow_size = 1
+anti_aliasing = false
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_d2d4f"]
 content_margin_left = 15.0
 content_margin_top = 15.0
 content_margin_right = 15.0
 content_margin_bottom = 15.0
-bg_color = Color(0.004019165, 0.004019165, 0.004019165, 1)
+bg_color = Color(0.18039216, 0.13333334, 0.18431373, 1)
 corner_radius_top_left = 5
 corner_radius_top_right = 5
 corner_radius_bottom_right = 5
 corner_radius_bottom_left = 5
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_w2r0d"]
+content_margin_left = 15.0
+content_margin_top = 15.0
+content_margin_right = 15.0
+content_margin_bottom = 15.0
+bg_color = Color(0.35686275, 0.003921569, 0.003921569, 1)
+corner_radius_top_left = 5
+corner_radius_top_right = 5
+corner_radius_bottom_right = 5
+corner_radius_bottom_left = 5
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_xio0d"]
+content_margin_left = 15.0
+content_margin_top = 15.0
+content_margin_right = 15.0
+content_margin_bottom = 15.0
+bg_color = Color(0.18039216, 0.13333334, 0.18431373, 1)
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color(0.18039216, 0.13333334, 0.18431373, 1)
+corner_radius_top_left = 3
+corner_radius_top_right = 3
+corner_radius_bottom_right = 3
+corner_radius_bottom_left = 3
+shadow_size = 1
+anti_aliasing = false
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_brx16"]
+atlas = ExtResource("11_s4pem")
+region = Rect2(0, 0, 68, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_tku4v"]
+atlas = ExtResource("11_s4pem")
+region = Rect2(68, 0, 68, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_63khb"]
+atlas = ExtResource("11_s4pem")
+region = Rect2(136, 0, 68, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_e2l5t"]
+atlas = ExtResource("11_s4pem")
+region = Rect2(204, 0, 68, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_r8mhq"]
+atlas = ExtResource("11_s4pem")
+region = Rect2(272, 0, 68, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_s6l3c"]
+atlas = ExtResource("11_s4pem")
+region = Rect2(340, 0, 68, 48)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_tf5ef"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_brx16")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_tku4v")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_63khb")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_e2l5t")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_r8mhq")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_s6l3c")
+}],
+"loop": true,
+"name": &"default",
+"speed": 8.0
+}]
+
+[sub_resource type="Animation" id="Animation_s4pem"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Panel:position:y")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [50.0]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("PhoneBackground:position:y")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [180.0]
+}
+
+[sub_resource type="Animation" id="Animation_4e78x"]
+resource_name = "sway"
+length = 8.666683
+loop_mode = 1
+step = 0.16666667
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Panel:position:y")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 2, 3, 5.52, 7.31),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 1,
+"values": [50.0, 51.0, 52.0, 51.0, 52.0]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("PhoneBackground:position:y")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 2, 3, 5.51, 7.31),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 1,
+"values": [180.0, 181.0, 182.0, 181.0, 182.0]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_xio0d"]
+_data = {
+&"RESET": SubResource("Animation_s4pem"),
+&"sway": SubResource("Animation_4e78x")
+}
 
 [node name="MainMenu" type="Control"]
 layout_mode = 3
@@ -78,56 +193,231 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+script = ExtResource("1_4e78x")
 
 [node name="MenuBG" type="Control" parent="."]
 anchors_preset = 0
 offset_right = 40.0
 offset_bottom = 40.0
 
-[node name="City" type="Sprite2D" parent="MenuBG"]
-position = Vector2(455.2941, 180)
-scale = Vector2(1.3235294, 1.3235294)
-texture = ExtResource("1_tk8dj")
+[node name="Parallax2D" type="Parallax2D" parent="MenuBG"]
+scroll_scale = Vector2(0.9, 0.9)
+repeat_size = Vector2(631, 0)
+autoscroll = Vector2(-5, 0)
+repeat_times = 2
 
-[node name="Panel" type="Panel" parent="."]
-layout_mode = 1
-anchors_preset = -1
-anchor_right = 1.0
-anchor_bottom = 1.0
+[node name="1" type="Sprite2D" parent="MenuBG/Parallax2D"]
+position = Vector2(320, 180)
+scale = Vector2(1.1111112, 1.1111112)
+texture = ExtResource("1_w2r0d")
 
-[node name="VBoxContainer" type="VBoxContainer" parent="Panel"]
+[node name="Parallax2D2" type="Parallax2D" parent="MenuBG"]
+scroll_scale = Vector2(0.9, 0.9)
+repeat_size = Vector2(631, 0)
+autoscroll = Vector2(-15, 0)
+repeat_times = 2
+
+[node name="2" type="Sprite2D" parent="MenuBG/Parallax2D2"]
+position = Vector2(320, 180)
+scale = Vector2(1.1111112, 1.1111112)
+texture = ExtResource("2_4e78x")
+
+[node name="Parallax2D3" type="Parallax2D" parent="MenuBG"]
+scroll_scale = Vector2(0.7, 0.7)
+repeat_size = Vector2(631, 0)
+autoscroll = Vector2(-25, 0)
+
+[node name="3" type="Sprite2D" parent="MenuBG/Parallax2D3"]
+position = Vector2(320, 180)
+scale = Vector2(1.1111112, 1.1111112)
+texture = ExtResource("3_s4pem")
+
+[node name="Parallax2D4" type="Parallax2D" parent="MenuBG"]
+scroll_scale = Vector2(0.5, 0.5)
+repeat_size = Vector2(631, 0)
+autoscroll = Vector2(-30, 0)
+
+[node name="4" type="Sprite2D" parent="MenuBG/Parallax2D4"]
+position = Vector2(319.99997, 179.99998)
+scale = Vector2(1.1111109, 1.111111)
+texture = ExtResource("4_xio0d")
+
+[node name="Parallax2D5" type="Parallax2D" parent="MenuBG"]
+scroll_scale = Vector2(0.3, 0.3)
+repeat_size = Vector2(631, 0)
+autoscroll = Vector2(-35, 0)
+
+[node name="5" type="Sprite2D" parent="MenuBG/Parallax2D5"]
+position = Vector2(320, 180)
+scale = Vector2(1.1111112, 1.1111112)
+texture = ExtResource("5_tf5ef")
+
+[node name="PhoneBackground" type="Sprite2D" parent="."]
+position = Vector2(320, 180)
+scale = Vector2(2, 2)
+texture = ExtResource("2_3c04x")
+
+[node name="Panel" type="MarginContainer" parent="."]
 layout_mode = 1
-anchors_preset = 8
+anchors_preset = 5
 anchor_left = 0.5
-anchor_top = 0.5
 anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -140.5
-offset_top = -80.5
-offset_right = 140.5
-offset_bottom = 80.5
+offset_left = -80.0
+offset_top = 50.0
+offset_right = 80.0
+offset_bottom = 344.0
 grow_horizontal = 2
-grow_vertical = 2
 
-[node name="Label" type="Label" parent="Panel/VBoxContainer"]
+[node name="MainMenu Container" type="VBoxContainer" parent="Panel"]
 layout_mode = 2
-theme_override_colors/font_shadow_color = Color(0, 0, 0, 0.827451)
-theme_override_fonts/font = SubResource("FontFile_6vw7e")
-theme_override_font_sizes/font_size = 40
+size_flags_vertical = 0
+
+[node name="Project" type="Label" parent="Panel/MainMenu Container"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.18039216, 0.13333334, 0.18431373, 1)
+theme_override_colors/font_shadow_color = Color(0.78039217, 0.8627451, 0.8156863, 1)
+theme_override_constants/shadow_outline_size = 2
+theme_override_fonts/font = ExtResource("3_joh67")
+theme_override_font_sizes/font_size = 21
 theme_override_styles/focus = SubResource("StyleBoxFlat_qrfef")
-text = "Project Delivery"
+text = " Project "
+horizontal_alignment = 1
+autowrap_mode = 2
+uppercase = true
 
-[node name="StartGame" type="Button" parent="Panel/VBoxContainer"]
+[node name="Delivery" type="Label" parent="Panel/MainMenu Container"]
 layout_mode = 2
-theme_override_font_sizes/font_size = 18
-theme_override_styles/normal = SubResource("StyleBoxFlat_d2d4f")
-text = "Start Game"
-script = ExtResource("5_f40uw")
+theme_override_colors/font_color = Color(0.18039216, 0.13333334, 0.18431373, 1)
+theme_override_colors/font_shadow_color = Color(0.78039217, 0.8627451, 0.8156863, 1)
+theme_override_constants/shadow_outline_size = 2
+theme_override_fonts/font = ExtResource("3_joh67")
+theme_override_font_sizes/font_size = 30
+theme_override_styles/focus = SubResource("StyleBoxFlat_qrfef")
+text = "Delivery"
+horizontal_alignment = 1
+autowrap_mode = 2
+uppercase = true
 
-[node name="Options" type="Button" parent="Panel/VBoxContainer"]
+[node name="HSeparator" type="HSeparator" parent="Panel/MainMenu Container"]
+custom_minimum_size = Vector2(0, 15)
 layout_mode = 2
-theme_override_font_sizes/font_size = 18
-theme_override_styles/normal = SubResource("StyleBoxFlat_d2d4f")
-text = "Options"
+theme_override_styles/separator = SubResource("StyleBoxEmpty_3c04x")
 
-[connection signal="button_up" from="Panel/VBoxContainer/StartGame" to="Panel/VBoxContainer/StartGame" method="_on_button_up"]
+[node name="New Game" type="Button" parent="Panel/MainMenu Container"]
+custom_minimum_size = Vector2(125, 0)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+size_flags_stretch_ratio = 0.41
+mouse_default_cursor_shape = 2
+theme_override_colors/font_color = Color(0.18039216, 0.13333334, 0.18431373, 1)
+theme_override_fonts/font = ExtResource("4_u184e")
+theme_override_font_sizes/font_size = 20
+theme_override_styles/normal = SubResource("StyleBoxFlat_6mijq")
+text = "NEW GAME"
+
+[node name="HSeparator2" type="HSeparator" parent="Panel/MainMenu Container"]
+custom_minimum_size = Vector2(0, 15)
+layout_mode = 2
+theme_override_styles/separator = SubResource("StyleBoxEmpty_3c04x")
+
+[node name="Options" type="Button" parent="Panel/MainMenu Container"]
+custom_minimum_size = Vector2(100, 0)
+layout_mode = 2
+size_flags_horizontal = 4
+mouse_default_cursor_shape = 2
+theme_override_fonts/font = ExtResource("4_u184e")
+theme_override_font_sizes/font_size = 20
+theme_override_styles/normal = SubResource("StyleBoxFlat_d2d4f")
+text = "OPTIONS"
+
+[node name="Exit" type="Button" parent="Panel/MainMenu Container"]
+layout_mode = 2
+size_flags_horizontal = 4
+mouse_default_cursor_shape = 2
+theme_override_fonts/font = ExtResource("4_u184e")
+theme_override_font_sizes/font_size = 20
+theme_override_styles/normal = SubResource("StyleBoxFlat_w2r0d")
+text = "EXIT"
+
+[node name="CharSelect" type="VBoxContainer" parent="Panel"]
+visible = false
+layout_mode = 2
+size_flags_vertical = 0
+
+[node name="Project" type="Label" parent="Panel/CharSelect"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.18039216, 0.13333334, 0.18431373, 1)
+theme_override_colors/font_shadow_color = Color(0.78039217, 0.8627451, 0.8156863, 1)
+theme_override_constants/shadow_outline_size = 2
+theme_override_fonts/font = ExtResource("3_joh67")
+theme_override_font_sizes/font_size = 21
+theme_override_styles/focus = SubResource("StyleBoxFlat_qrfef")
+text = " Character "
+horizontal_alignment = 1
+autowrap_mode = 2
+uppercase = true
+
+[node name="Delivery" type="Label" parent="Panel/CharSelect"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.18039216, 0.13333334, 0.18431373, 1)
+theme_override_colors/font_shadow_color = Color(0.78039217, 0.8627451, 0.8156863, 1)
+theme_override_constants/shadow_outline_size = 2
+theme_override_fonts/font = ExtResource("3_joh67")
+theme_override_font_sizes/font_size = 30
+theme_override_styles/focus = SubResource("StyleBoxFlat_qrfef")
+text = "Select"
+horizontal_alignment = 1
+autowrap_mode = 2
+uppercase = true
+
+[node name="HSeparator" type="HSeparator" parent="Panel/CharSelect"]
+custom_minimum_size = Vector2(0, 15)
+layout_mode = 2
+theme_override_styles/separator = SubResource("StyleBoxEmpty_3c04x")
+
+[node name="Char Select" type="Button" parent="Panel/CharSelect"]
+custom_minimum_size = Vector2(125, 50)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+size_flags_stretch_ratio = 0.41
+mouse_default_cursor_shape = 2
+theme_override_colors/font_color = Color(0.18039216, 0.13333334, 0.18431373, 1)
+theme_override_fonts/font = ExtResource("4_u184e")
+theme_override_font_sizes/font_size = 20
+theme_override_styles/normal = SubResource("StyleBoxFlat_xio0d")
+
+[node name="Woodcutter" type="AnimatedSprite2D" parent="Panel/CharSelect/Char Select"]
+position = Vector2(59, 12.000003)
+scale = Vector2(1.4375001, 1.4375001)
+sprite_frames = SubResource("SpriteFrames_tf5ef")
+autoplay = "default"
+frame_progress = 0.91356975
+
+[node name="HSeparator2" type="HSeparator" parent="Panel/CharSelect"]
+custom_minimum_size = Vector2(0, 15)
+layout_mode = 2
+theme_override_styles/separator = SubResource("StyleBoxEmpty_3c04x")
+
+[node name="Back" type="Button" parent="Panel/CharSelect"]
+layout_mode = 2
+size_flags_horizontal = 4
+mouse_default_cursor_shape = 2
+theme_override_fonts/font = ExtResource("4_u184e")
+theme_override_font_sizes/font_size = 20
+theme_override_styles/normal = SubResource("StyleBoxFlat_w2r0d")
+text = "BACK"
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+&"": SubResource("AnimationLibrary_xio0d")
+}
+autoplay = "sway"
+
+[connection signal="button_up" from="Panel/MainMenu Container/New Game" to="." method="_on_new_game_button_up"]
+[connection signal="button_up" from="Panel/MainMenu Container/New Game" to="Panel/MainMenu Container/New Game" method="_on_button_up"]
+[connection signal="button_up" from="Panel/MainMenu Container/Exit" to="." method="_on_exit_button_up"]
+[connection signal="button_up" from="Panel/CharSelect/Char Select" to="." method="_on_char_select_button_up"]
+[connection signal="button_up" from="Panel/CharSelect/Char Select" to="Panel/CharSelect/Char Select" method="_on_button_up"]
+[connection signal="button_up" from="Panel/CharSelect/Back" to="." method="_on_back_button_up"]

@@ -32,9 +32,9 @@
 [ext_resource type="Script" uid="uid://c1kwytt5rc3qn" path="res://entities/player/actions/attack.gd" id="26_x3qp0"]
 [ext_resource type="Script" uid="uid://56jvapvdt2q" path="res://entities/player/actions/FacingCollisionShape2d.gd" id="27_hqjia"]
 [ext_resource type="Texture2D" uid="uid://6s7mejgby6e" path="res://assets/sprites/player/1 Woodcutter/Woodcutter_run_fixed.png" id="27_unwxu"]
-[ext_resource type="Script" uid="uid://cgx6j0l7sk0hi" path="res://entities/player/hit_state.gd" id="28_i3i7k"]
-[ext_resource type="Script" uid="uid://cr61mmitt0i57" path="res://entities/player/inventory_component.gd" id="32_m3vrt"]
-[ext_resource type="Script" uid="uid://ck4dw705s4eqv" path="res://entities/player/dead_state.gd" id="32_wbbrj"]
+[ext_resource type="Script" uid="uid://cgx6j0l7sk0hi" path="res://entities/player/states/hit_state.gd" id="28_i3i7k"]
+[ext_resource type="Script" uid="uid://cr61mmitt0i57" path="res://entities/player/components/inventory_component.gd" id="32_m3vrt"]
+[ext_resource type="Script" uid="uid://ck4dw705s4eqv" path="res://entities/player/states/dead_state.gd" id="32_wbbrj"]
 [ext_resource type="Script" uid="uid://dgqnbei7hsg2n" path="res://entities/player/states/action_state_machine.gd" id="35_ck0hy"]
 [ext_resource type="Script" uid="uid://xjjuq515p7ki" path="res://entities/player/states/action_idle.gd" id="36_fs2qx"]
 [ext_resource type="Script" uid="uid://b0xnlum3xnhie" path="res://entities/player/camera_2d.gd" id="38_g3kjw"]
@@ -1285,7 +1285,6 @@ state_machine = NodePath("../CharacterStateMachine")
 
 [node name="Camera2D" type="Camera2D" parent="."]
 offset = Vector2(0, -20)
-zoom = Vector2(2, 2)
 position_smoothing_enabled = true
 script = ExtResource("38_g3kjw")
 
